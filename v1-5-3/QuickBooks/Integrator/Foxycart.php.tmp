@@ -1,0 +1,27 @@
+<?php
+
+require_once 'QuickBooks.php';
+
+require_once 'QuickBooks/Integrator.php';
+
+class QuickBooks_Integrator_Foxycart extends QuickBooks_Integrator
+{
+	public function getCustomer($ID)
+	{
+		
+	}
+	
+	abstract protected function listNewCustomersSince($datetime);
+	
+	abstract public function listModifiedCustomersSince($datetime);
+	
+	abstract public function listNewOrdersSince($datetime);
+	
+	abstract public function listModifiedOrdersSince($datetime);
+	
+	abstract public function getOrder($ID);
+	
+	abstract public function getItem($ID);
+}
+
+?>

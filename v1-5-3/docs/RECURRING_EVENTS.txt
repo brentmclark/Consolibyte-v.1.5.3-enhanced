@@ -1,0 +1,9 @@
+
+Ooops, sorry, I havn't written up this documentation yet. 
+
+Contact me at keith@UglySlug.com if you need help with this. It enables you to 
+do things like make sure that an event occurs every so often. (i.e.: Run a 
+CustomerQuery once per day, etc.)
+
+ - Keith
+   keith@UglySlug.com

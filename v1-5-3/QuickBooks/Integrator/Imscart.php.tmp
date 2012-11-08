@@ -1,0 +1,656 @@
+<?php
+
+/**
+ * QuickBooks IMSCart Integrator
+ * 
+ * @author Keith Palmer <keith@consolibyte.com>
+ * @license LICENSE.txt
+ * 
+ * @package QuickBooks
+ * @subpackage Integrator
+ */
+
+/** 
+ * QuickBooks constants
+ */
+require_once 'QuickBooks.php';
+
+/** 
+ * QuickBooks Integrator base class
+ */
+require_once 'QuickBooks/Integrator.php';
+
+/**
+ * QuickBooks IMSCart Integrator class
+ * 
+ * IMSCart integration is accomplished by implementing a class extending the 
+ * QuickBooks_Integrator class. Methods are implemented which each return an 
+ * object instance (QuickBooks_Object_*) or list of instances. 
+ */
+class QuickBooks_Integrator_IMSCart extends QuickBooks_Integrator
+{
+	/** 
+	 * Configuration defaults for IMSCart
+	 * 
+	 * @param array $config
+	 * @return array
+	 */
+	protected function _defaults($config)
+	{
+		$config = parent::_defaults($config);
+		
+		$defaults = array(
+			'currency' => 'USD', 
+			'tax_agency' => 'Internal Revenue Service',
+			'order_status' => 'C',  
+			'additional_order_queries' => array(), 
+			'additional_product_queries' => array(), 
+			'additional_customer_queries' => array(), 
+			'additional_shipmethod_queries' => array(), 
+			'additional_paymentmethod_queries' => array(), 
+			'additional_discount_queries' => array(), 
+			'additional_shipping_queries' => array(), 
+			'additional_coupon_queries' => array(), 
+			'additional_salestax_queries' => array(), 
+			'additional_orderitem_queries' => array(), 
+			'additional_payment_queries' => array(), 
+		);
+		
+		$config = array_merge($defaults, $config);
+		
+		foreach ($defaults as $key => $value)
+		{
+			if (is_array($value) and !is_array($config[$key]))
+			{
+				$config[$key] = array( $config[$key] ); 
+			}
+		}
+		
+		return $config;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 */
+	protected function _defaultGetCustomerQuery()
+	{
+		return '
+			SELECT
+				user_info_id AS CustomerID, 
+				company AS CompanyName, 
+				CONCAT(first_name, \' \', last_name, \' (\', user_info_id, \')\') AS Name,
+				first_name AS FirstName, 
+				middle_name AS MiddleName, 
+				last_name AS LastName, 
+			
+				CASE
+					WHEN LENGTH(bill_address_1) THEN bill_address_1
+					ELSE address_1 END AS BillAddress_Addr1,
+			
+				CASE
+					WHEN LENGTH(bill_city) THEN bill_city
+					ELSE city END AS BillAddress_City,
+			
+				CASE
+					WHEN LENGTH(bill_state) THEN bill_state
+					ELSE state END AS BillAddress_State,
+			
+				CASE
+					WHEN LENGTH(bill_zip) THEN bill_zip
+					ELSE zip END AS BillAddress_PostalCode, 
+				
+				address_1 AS ShipAddress_Addr1, 
+				address_2 AS ShipAddress_Addr2, 
+				city AS ShipAddress_City, 
+				state AS ShipAddress_State, 
+				zip as ShipAddress_PostalCode, 
+				
+				phone_1 AS Phone, 
+				phone_2 AS AltPhone, 
+				user_email AS Email, 
+				
+				CONCAT(first_name, \' \', last_name) AS Contact
+				
+			FROM
+				user_info
+			WHERE
+				user_info_id = $ID ';
+	}
+	
+	/**
+	 * Get a customer by ID value
+	 * 
+	 * @param integer $ID
+	 * @return QuickBooks_Object_Customer
+	 */
+	public function getCustomer($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$sql = $this->_getCustomerQuery($ID);
+		$res = $this->_integrator->query($sql, $errnum, $errmsg);
+		$arr = $this->_integrator->fetch($res);
+		
+		$vars = array(
+			'ID' => $ID, 
+			);
+		
+		$arr = $this->_additionalQueries($this->_config['additional_customer_queries'], $arr, array_merge($this->_config, $vars));
+		
+		return $this->_customerFromArray($arr);
+	}
+	
+	/**
+	 * Run a bunch of additional queries, and merge them with the existing result set
+	 * 
+	 * @param array $queries		An array of queries to run and merge together
+	 * @param array $arr			The already existing result set
+	 * @param array $vars			An array of variables for use in the queries
+	 * @return array
+	 */
+	protected function _additionalQueries($queries, $arr, $vars)
+	{
+		foreach ($queries as $query)
+		{
+			$new = array();
+			
+			$errnum = 0;
+			$errmsg = '';
+			
+			$query = $this->_applyFormat($query, $vars);
+			
+			$res = $this->_integrator->query($query, $errnum, $errmsg);
+			if ($res)
+			{
+				$new = $this->_integrator->fetch($res);
+			}
+			
+			$arr = array_merge($arr, $new);
+		}
+		
+		return $arr;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 */
+	public function listNewCustomersSince($datetime)
+	{
+		return array();
+	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 */
+	public function listModifiedCustomersSince($datetime)
+	{
+		return array();
+	}
+	
+	/** 
+	 * Get a list of order IDs which have been created since a given date/time
+	 * 
+	 * @param string $datetime
+	 * @return array
+	 */
+	public function listNewOrdersSince($datetime)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$list = array();
+		
+		$res = $this->_integrator->query("
+			SELECT 
+				orders.order_id
+			FROM 
+				orders
+			LEFT JOIN
+				user_info ON orders.user_info_id = user_info.user_info_id
+			WHERE 
+				orders.order_status =  '" . $this->_config['order_status'] . "' AND 
+				(LENGTH(user_info.first_name) OR LENGTH(user_info.last_name)) AND 
+				FROM_UNIXTIME(orders.cdate) >= '" . $datetime . "' ", $errnum, $errmsg);
+		
+		while ($arr = $this->_integrator->fetch($res))
+		{
+			$list[] = $arr['order_id'];
+		}
+		
+		return $list;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param string $datetime
+	 * @return array 
+	 */
+	public function listModifiedOrdersSince($datetime)
+	{
+		return array();
+	}
+	
+	/**
+	 * Get an order by ID value (returns a QuickBooks_Object_Invoice, QuickBooks_Object_SalesOrder, or QuickBooks_Object_SalesReceipt)
+	 * 
+	 * This function can return one of these types of objects:
+	 * 	- QuickBooks_Object_Invoice
+	 * 	- QuickBooks_Object_SalesOrder
+	 * 	- QuickBooks_Object_SalesReceipt
+	 * 
+	 * @param integer $ID
+	 * @return QuickBooks_Object_*
+	 */
+	public function getOrder($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$sql = $this->_getOrderQuery($ID);
+		$res = $this->_integrator->query($sql, $errnum, $errmsg);
+		$arr = $this->_integrator->fetch($res);
+		
+		$items = $this->getOrderItemsForOrder($ID);
+		
+		$shipping = $this->getShippingForOrder($ID);
+		
+		$vars = array(
+			'ID' => $ID, 
+			);
+		
+		// Run a bunch of additional queries
+		$arr = $this->_additionalQueries($this->_config['additional_order_queries'], $arr, array_merge($this->_config, $vars));
+		
+		return $this->_orderFromArray($arr, $items, $shipping);
+	}
+	
+	/** 
+	 * 
+	 * 
+	 */
+	protected function _defaultGetOrderQuery()
+	{
+		return '
+			SELECT
+				order_id AS OrderID,
+				orders.user_info_id AS CustomerID,
+				NULL AS ClassID,
+				NULL AS ARAccountID,
+				NULL AS TemplateID,
+				DATE(FROM_UNIXTIME(orders.cdate)) AS TxnDate,
+				
+				order_id AS RefNumber,
+				
+				CASE
+					WHEN LENGTH(bill_address_1) THEN bill_address_1
+					ELSE address_1 END AS BillAddress_Addr1,
+			
+				CASE
+					WHEN LENGTH(bill_city) THEN bill_city
+					ELSE city END AS BillAddress_City,
+			
+				CASE
+					WHEN LENGTH(bill_state) THEN bill_state
+					ELSE state END AS BillAddress_State,
+			
+				CASE
+					WHEN LENGTH(bill_zip) THEN bill_zip
+					ELSE zip END AS BillAddress_PostalCode, 
+				
+				address_1 AS ShipAddress_Addr1, 
+				address_2 AS ShipAddress_Addr2, 
+				city AS ShipAddress_City, 
+				state AS ShipAddress_State, 
+				zip AS ShipAddress_PostalCode, 
+				
+				ship_method_id AS ShipMethodID, 
+				notes AS Memo
+				
+			FROM
+				orders
+			LEFT JOIN
+				user_info ON user_info.user_info_id = orders.user_info_id
+			WHERE
+				order_id = $ID ';		
+	}
+	
+	/**
+	 * Alias of {@link QuickBooks_Integrator_Imscart::getOrderItemsForOrder()}
+	 */
+	public function getOrderItems($OrderID)
+	{
+		return $this->getOrderItemsForOrder($OrderID);
+	}
+	
+	/**
+	 * Get a list of items for an order (Invoice, SalesReceipt, SalesOrder)
+	 * 
+	 * @param integer $OrderID
+	 * @return array 
+	 */
+	public function getOrderItemsForOrder($OrderID)
+	{
+		$list = array();
+		
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT
+				order_item.product_id AS ProductID, 
+				order_item.product_quantity AS Quantity, 
+				order_item.product_item_price AS Rate
+			FROM
+				order_item
+			LEFT JOIN
+				product ON order_item.product_id = product.product_id
+			LEFT JOIN
+				product_price ON product_price.product_id = product.product_id
+			WHERE
+				product_currency = '" . $this->_config['currency'] . "' AND 
+				order_item.order_id = " . $OrderID, $errnum, $errmsg);
+		
+		while ($arr = $this->_integrator->fetch($res))
+		{
+			$vars = array(
+				'OrderID' => $OrderID, 
+				);
+			
+			$arr = $this->_additionalQueries($this->_config['additional_orderitem_queries'], $arr, array_merge($this->_config, $vars));
+			
+			$item = $this->_orderItemFromArray($arr);
+			
+			if ($item)
+			{
+				$list[] = $item;
+			}
+		}
+		
+		return $list;
+	}
+	
+	/**
+	 * Get a ship method object by ID
+	 * 
+	 * @param integer $ID
+	 * @return QuickBooks_Object_ShipMethod
+	 */
+	public function getShipMethod($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$sql = $this->_getShipMethodQuery($ID);
+		$res = $this->_integrator->query($sql, $errnum, $errmsg);
+		$arr = $this->_integrator->fetch($res);
+		
+		$vars = array(
+			'ID' => $ID, 
+			);
+		
+		$arr = $this->_additionalQueries($this->_config['additional_shipmethod_queries'], $arr, array_merge($this->_config, $vars));
+		
+		return $this->_shipMethodFromArray($arr);
+	}
+	
+	protected function _defaultGetShipMethodQuery()
+	{
+		return '
+			SELECT
+				ship_method_id AS ShipMethodID, 
+				CONCAT(ship_carrier_code, \' - \', ship_method_name) AS Name
+			FROM
+				shipping
+			WHERE
+				ship_method_id = $ID ';
+	}
+	
+	/**
+	 * Get a payment method by ID value
+	 * 
+	 * @param integer $ID
+	 * @return QuickBooks_Object_PaymentMethod
+	 */
+	public function getPaymentMethod($ID)
+	{
+		return null;
+	}
+	
+	/**
+	 * Alias of {@link QuickBooks_Integrator_Imscart::getPaymentForOrder()}
+	 */
+	public function getPayment($OrderID)
+	{
+		return $this->getPaymentForOrder($OrderID);
+	}
+	
+	/**
+	 * Get a payment by Order ID
+	 * 
+	 * @param integer $OrderID
+	 * @return QuickBooks_Object_ReceivePayment
+	 */
+	public function getPaymentForOrder($OrderID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT
+				user_info_id AS CustomerID, 
+				NULL AS CustomerListID, 
+				NULL AS CustomerName, 
+				NULL AS ARAccountID, 
+				NULL AS ARAccountListID, 
+				NULL AS ARAccountName, 
+				
+				order_id AS RefNumber,
+					
+				DATE(FROM_UNIXTIME(orders.cdate)) AS TxnDate, 
+				(order_subtotal + order_shipping - coupon_discount) AS TotalAmount, 
+				NULL AS PaymentMethodID, 
+				NULL AS PaymentMethodListID, 
+				NULL AS PaymentMethodName, 
+				CONCAT(auth_transaction_number, ', XXXX-XXXX-XXXX-', SUBSTR(card_no, 12, 4)) AS Memo, 
+				'true' AS IsAutoApply
+			FROM
+				orders
+			WHERE
+				order_id = " . $OrderID, $errnum, $errmsg);
+		
+		$arr = $this->_integrator->fetch($res);
+		
+		$vars = array(
+			'OrderID' => $OrderID, 
+			);
+		
+		$arr = $this->_additionalQueries($this->_config['additional_payment_queries'], $arr, array_merge($this->_config, $vars));
+		
+		$orders = array();
+		
+		return $this->_paymentFromArray($arr, $orders);
+	}
+	
+	/**
+	 * Get the order discount (if any)
+	 * 
+	 * @param integer $OrderID
+	 * @return QuickBooks_Object_DiscountItem
+	 */
+	public function getDiscountForOrder($OrderID)
+	{
+		return null;
+	}
+	
+	/**
+	 * Get the coupon for this order (if any)
+	 * 
+	 * @param integer $ID
+	 * @return QuickBooks_Object_DiscountItem
+	 */
+	public function getCoupon($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT
+				coupon_name AS Name, 
+				CONCAT(coupon_name, ', ', coupon_number) AS ItemDesc, 
+				NULL AS SalesTaxCodeID
+				'" . $this->_config['tax_code_nontaxable'] . "' AS SalesTaxCodeName, 
+				NULL AS SalesTaxCodeListID, 
+				coupon_discount AS DiscountRate, 
+				NULL AS DiscountRatePercent, 
+				NULL AS AccountID, 
+				NULL AS AccountListID, 
+				NULL AS AccountName
+			FROM
+				coupon
+			WHERE
+				coupon_id = " . $ID, $errnum, $errmsg);
+		
+		$arr = $this->_integrator->fetch($res);
+		
+		$vars = array(
+			'ID' => $ID, 
+			);
+		
+		$arr = $this->_additionalQueries($this->_config['additional_coupon_queries'], $arr, array_merge($this->_config, $vars));
+		
+		return $this->_couponFromArray($arr);
+	}
+	
+	/** 
+	 * Get a sales tax item by ID
+	 * 
+	 * @param integer $ID
+	 * @return QuickBooks_Object_SalesTaxItem
+	 */
+	public function getSalesTax($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query(" 
+			SELECT
+				AS TaxRateID, 
+				AS ItemDesc, 
+				AS TaxRate, 
+				AS TaxVendorID, 
+				AS TaxVendorListID, 
+				AS TaxVendorName
+			FROM
+				tax_rate
+			WHERE
+				tax_rate_id = " . $ID, $errnum, $errmsg);
+				
+		$arr = $this->_integrator->fetch($res);
+		
+		$vars = array(
+			'ID' => $ID, 
+			);
+		
+		$arr = $this->_additionalQueries($this->_config['additional_salestax_queries'], $arr, array_merge($this->_config, $vars));
+		
+		return $this->_salesTaxFromArray($arr);
+	}
+	
+	/**
+	 * Get a shipping item for an order
+	 * 
+	 * @param integer $OrderID
+	 * @return QuickBooks_Object_OtherChargeItem
+	 */
+	public function getShippingForOrder($OrderID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$sql = $this->_getShippingForOrderQuery($OrderID);
+		$res = $this->_integrator->query($sql, $errnum, $errmsg);
+		$arr = $this->_integrator->fetch($res);
+		
+		$vars = array(
+			'OrderID' => $OrderID, 
+			);
+		
+		$arr = $this->_additionalQueries($this->_config['additional_shipping_queries'], $arr, array_merge($this->_config, $vars));
+		
+		return $this->_shippingFromArray($arr);
+	}
+	
+	protected function _defaultGetShippingForOrderQuery()
+	{
+		return '
+			SELECT 
+				CONCAT(shipping.ship_carrier_code, \' - \', shipping.ship_method_name) AS `Desc`, 
+				orders.order_shipping AS Amount
+			FROM
+				orders
+			LEFT JOIN
+				shipping ON orders.ship_method_id = shipping.ship_method_id
+			WHERE
+				orders.order_id = $OrderID ';
+	}
+	
+	/**
+	 * Get a product by ID number
+	 * 
+	 * This method can return any of the following types of objects:
+	 * 	- QuickBooks_Object_ServiceItem
+	 * 	- QuickBooks_Object_InventoryItem
+	 * 	- QuickBooks_Object_NonInventoryItem
+	 * 	- QuickBooks_Object_OtherChargeItem
+	 * 
+	 * @param integer $ID
+	 * @return QuickBooks_Object_*
+	 */
+	public function getProduct($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT
+				product.product_id AS ItemID, 
+				product_name_1 AS Name, 
+				product_s_desc_1 AS SalesOrPurchase_Desc, 
+				product_s_desc_1 AS SalesAndPurchase_SalesDesc, 
+				
+				-- these are for ItemService 
+				product_price AS SalesOrPurchase_Price, 
+				product_price AS SalesAndPurchase_SalesPrice, 
+				-- product_price AS SalesAndPurchase_PurchaseCost, 
+			
+				'" . $this->_config['sales_account_name'] . "' AS SalesOrPurchase_AccountName 
+				
+			FROM
+				product
+			LEFT JOIN
+				product_price ON product_price.product_id = product.product_id
+			WHERE
+				product_currency = '" . $this->_config['currency'] . "' AND 
+				product.product_id = " . $ID, $errnum, $errmsg);
+				
+		$arr = $this->_integrator->fetch($res);
+		
+		$vars = array(
+			'ID' => $ID, 
+			);
+		
+		$arr = $this->_additionalQueries($this->_config['additional_product_queries'], $arr, array_merge($this->_config, $vars));
+		
+		return $this->_productFromArray($arr);
+	}
+}
+
+?>

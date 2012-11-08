@@ -1,0 +1,13 @@
+
+ - Does your web application require real-time access to QuickBooks data?
+ - Did you ever wish you could query QuickBooks using SQL queries?
+ - Is RDS too slow or just not viable for your integration solution? 
+ - Don't want to pay for the (slow, annoying, ODBC) "official" QODBC driver?
+ 
+   Mirror your QuickBooks database in your SQL database of choice and avoid all 
+   of those problems! 
+
+
+
+
+ * * * BETA: See example_sql_server.php for more details * * * 

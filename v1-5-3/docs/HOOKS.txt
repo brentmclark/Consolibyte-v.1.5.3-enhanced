@@ -1,0 +1,152 @@
+
+Since version 1.4, user-defined hooks may be attached to the QuickBooks_Server 
+and QuickBooks_Server_* SOAP servers to enable developers to further integrate 
+their custom web applications with QuickBooks. 
+
+Hooks are simply functions or static methods which are registered with the 
+server component to be called when certain events occur within the QuickBooks 
+PHP Framework. Some of the base available hooks are documented below. Other 
+Driver subclasses or SOAP server subclasses may offer additional hooks specific 
+to those specific subclasses. 
+
+In addition to the named parameters, most hooks will also recieve an array
+called $hook_data. The $hook_data array will contain additional, hook-type
+specific data which might be useful to use within your hooks. 
+
+Currently, there is no way to pass data back from the hook to the parent 
+method/function. Support for this might be added in the future. 
+
+You may register multiple user-defined functions to be invoked for each type of 
+hook. These hooks will be invoked in the order in which you have registered 
+the hooks, i.e. the first hook registered will run first. *EACH HOOK SHOULD 
+RETURN A BOOLEAN VALUE, IF A HOOK RETURNS FALSE, THE REST OF THE HOOKS WILL NOT 
+BE INVOKED*. If you need to report an error which occured within the hook, you 
+can set the $err parameter of the hook to a user-defined error message or 
+error code (the message or code will be logged and the error reported to the 
+Web Connector application). 
+
+
+All hooks can now be defined as functions, static methods, or object instance
+methods. They should follow the following formats:
+
+class MyHookClass
+{
+	static public function myMethod($requestID, $user, $hook, &$err, $hook_data, $callback_config)
+	{
+		...
+	}
+}
+
+
+class MyHookClass2
+{
+	public function __construct(...)
+	{
+		...
+	}
+	
+	public function myMethod($requestID, $user, $hook, &$err, $hook_data, $callback_config)
+	{
+		...
+	}
+}
+
+function MyHookFunction($requestID, $user, $hook, &$err, $hook_data, $callback_config)
+{
+	...
+}
+
+
+Available SERVER hooks: (Invoked by: QuickBooks_Server, QuickBooks_Server_*)
+All SERVER hooks should have the following function declaration:
+	boolean function my_server_hook() { ... }
+
+ - QUICKBOOKS_SERVER_HOOK_PREHANDLE
+	This hook is called at the beginning of every SOAP request, and passes the 
+	complete SOAP request XML to the hook.  
+
+ - QUICKBOOKS_SERVER_HOOK_POSTHANDLE
+	This function is called at the end of every SOAP request, and passes the 
+	complete SOAP response XML to the hook. 
+
+
+Available HANDLERS hooks: (Invoked by: Quickbooks_Server, QuickBooks_Server_*)
+All HANDLERS hooks should have the following function declaration:
+	boolean function my_handlers_hook() { ... }
+
+ - QUICKBOOKS_HANDLERS_HOOK_AUTHENTICATE
+	This hook is called whenever the SOAP ->authenticate() method gets called 
+	by the QuickBooks Web Connector. 
+
+ - QUICKBOOKS_HANDLERS_HOOK_CLIENTVERSION
+ 	This hooks is called whenever the SOAP ->clientVersion() method gets called 
+ 	by the QuickBooks Web Connector.
+
+ - QUICKBOOKS_HANDLERS_HOOK_CLOSECONNECTION
+	This hook is called whenever the SOAP ->closeConnection() method gets called 
+	by the Web Connector (usually at the end of a session)
+	
+ - QUICKBOOKS_HANDLERS_HOOK_CONNECTIONERROR
+	This hook is called when the Web Connector determines an error has occured 
+	and calls the SOAP ->connectionError() method
+	
+ - QUICKBOOKS_HANDLERS_HOOK_GETINTERACTIVEURL
+	undocumented
+	
+ - QUICKBOOKS_HANDLERS_HOOK_GETLASTERROR
+	This hook is called when the Web Connector calls the SOAP method 
+	->getLastError() (usually immediately after some type of SOAP error occurs)
+	
+ - QUICKBOOKS_HANDLERS_HOOK_INTERACTIVEDONE
+QUICKBOOKS_HANDLERS_HOOK_INTERACTIVEREJECTED
+QUICKBOOKS_HANDLERS_HOOK_RECEIVERESPONSEXML
+QUICKBOOKS_HANDLERS_HOOK_SENDREQUESTXML
+QUICKBOOKS_HANDLERS_HOOK_SERVERVERSION
+
+QUICKBOOKS_HANDLERS_HOOK_LOGINSUCCESS
+QUICKBOOKS_HANDLERS_HOOK_LOGINFAIL
+
+
+Available DRIVER hooks: (Invoked by: QuickBook_Driver_*)
+All DRIVER hooks should have the following function declaration:
+	boolean function my_driver_hook($ticket, $user, &$err, $hookdata) { ... }
+
+QUICKBOOKS_DRIVER_HOOK_AUTHCHECK
+
+QUICKBOOKS_DRIVER_HOOK_AUTHCREATE', 'QuickBooks_Driver::authCreate');
+
+QUICKBOOKS_DRIVER_HOOK_AUTHDEFAULT', 'QuickBooks_Driver::authDefault');
+
+QUICKBOOKS_DRIVER_HOOK_AUTHLOGIN', 'QuickBooks_Driver::authLogin');
+
+QUICKBOOKS_DRIVER_HOOK_AUTHLOGOUT', 'QuickBooks_Driver::authLogout');
+
+QUICKBOOKS_DRIVER_HOOK_AUTHRESOLVE', 'QuickBooks_Driver::authResolve');
+
+QUICKBOOKS_DRIVER_HOOK_ERRORLOG', 'QuickBooks_Driver::errorLog');
+
+QUICKBOOKS_DRIVER_HOOK_ERRORLAST', 'QuickBooks_Driver::errorLast');
+
+QUICKBOOKS_DRIVER_HOOK_LOG
+
+QUICKBOOKS_DRIVER_HOOK_QUEUEACTIONLAST
+
+QUICKBOOKS_DRIVER_HOOK_QUEUEACTIONIDENTLAST
+
+QUICKBOOKS_DRIVER_HOOK_QUEUEDEQUEUE
+
+QUICKBOOKS_DRIVER_HOOK_QUEUEENQUEUE
+
+QUICKBOOKS_DRIVER_HOOK_QUEUEFETCH
+
+QUICKBOOKS_DRIVER_HOOK_QUEUEPROCESSED
+
+QUICKBOOKS_DRIVER_HOOK_QUEUESIZE
+
+QUICKBOOKS_DRIVER_HOOK_QUEUESTATUS
+
+QUICKBOOKS_DRIVER_HOOK_RECURDEQUEUE
+
+QUICKBOOKS_DRIVER_HOOK_RECURENQUEUE
+ 
+ 

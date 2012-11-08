@@ -1,0 +1,145 @@
+<?php
+
+/**
+ * 
+ * 
+ * @package QuickBooks
+ * @subpackage Object
+ */
+
+/**
+ * 
+ */
+require_once 'QuickBooks.php';
+
+/**
+ * 
+ */
+require_once 'QuickBooks/Object.php';
+
+/**
+ * 
+ * 
+ */
+class QuickBooks_Object_InvoiceLine extends QuickBooks_Object
+{
+	/**
+	 * Create a new QuickBooks InvoiceLine object
+	 * 
+	 * @param array $arr
+	 */
+	public function __construct($arr = array())
+	{
+		parent::__construct($arr);
+	}
+	
+	public function setItemListID($ListID)
+	{
+		return $this->set('ItemRef ListID', $ListID);
+	}
+	
+	public function setItemApplicationID($value)
+	{
+		return $this->set('ItemRef ' . QUICKBOOKS_API_APPLICATIONID, $value);
+	}
+	
+	public function setDescription($descrip)
+	{
+		return $this->set('Desc', $descrip);
+	}
+	
+	public function setQuantity($quan)
+	{
+		return $this->set('Quantity', $quan);
+	}
+	
+	public function setRate($rate)
+	{
+		return $this->set('Rate', $rate);
+	}
+	
+	public function setAmount($amount)
+	{
+		return $this->set('Amount', $amount);
+	}
+	
+	public function setSalesTaxCodeListID($ListID)
+	{
+		return $this->set('SalesTaxCodeRef ListID', $ListID);
+	}
+		
+	public function setTaxable()
+	{
+		return $this->set('SalesTaxCodeRef FullName', QUICKBOOKS_TAXABLE);
+	}
+	
+	public function setNonTaxable()
+	{
+		return $this->set('SalesTaxCodeRef FullName', QUICKBOOKS_NONTAXABLE);
+	}
+		
+	/**
+	 * 
+	 * 
+	 * @return boolean
+	 */
+	protected function _cleanup()
+	{
+		
+		return true;
+	}
+	
+	/**
+	 * 
+	 */
+	public function asArray($nest = true)
+	{
+		$this->_cleanup();
+		
+		return parent::asArray($nest);
+	}
+	
+	public function asXML($root = null, $parent = null)
+	{
+		switch ($parent)
+		{
+			case QUICKBOOKS_ADD_INVOICE:
+				$root = 'InvoiceLineAdd';
+				break;
+			case QUICKBOOKS_MOD_INVOICE:
+				$root = 'InvoiceLineMod';
+				break;
+		}
+		
+		return parent::asXML($root);
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param boolean $todo_for_empty_elements	A constant, one of: QUICKBOOKS_XML_XML_COMPRESS, QUICKBOOKS_XML_XML_DROP, QUICKBOOKS_XML_XML_PRESERVE
+	 * @param string $indent
+	 * @param string $root
+	 * @return string
+	 */
+	public function asQBXML($request, $todo_for_empty_elements = QUICKBOOKS_OBJECT_XML_DROP, $indent = "\t", $root = null)
+	{
+		$this->_cleanup();
+		
+		
+		
+		return parent::asQBXML($request, $todo_for_empty_elements, $indent, $root);
+	}
+	
+	/**
+	 * Tell the type of object this is
+	 * 
+	 * @return string
+	 */
+	public function object()
+	{
+		return 'InvoiceLine';
+	}
+}
+
+?>

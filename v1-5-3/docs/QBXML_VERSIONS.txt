@@ -1,0 +1,62 @@
+QuickBooks 2007 and Enterprise 7.0 (Using 
+QBXMLRP2) 
+6.0, 5.0, 4.1 4.0, 3.0, 2.1, 
+2.0, 1.1, 1.0 
+
+
+QuickBooks 2006 and Enterprise 6.0 (Using 
+QBXMLRP2) 
+5.0, 4.1 4.0, 3.0, 2.1, 2.0, 
+1.1, 1.0 
+
+
+QuickBooks 2005 and Enterprise 5.0 (R5 and later) 
+(using QBXMLRP2) 
+4.1, 4.0, 3.0, 2.1, 2.0, 1.1, 
+1.0 
+
+
+QuickBooks 2005 (and Enterprise 5.0) 
+(using QBXMLRP2) 
+4.0, 3.0, 2.1, 2.0, 1.1, 1.0 
+
+
+QuickBooks 2004 (and Enterprise 4.0) 
+(using QBXMLRP2) 
+3.0, 2.1, 2.0, 1.1, 1.0 
+
+
+QuickBooks 2003, Enterprise 3.0* (R7 and above) 
+and all later versions of QuickBooks using QBXMLRP 
+2.1, 2.0, 1.1, 1.0 
+
+
+QuickBooks 2003 
+(and Enterprise 2.0)* 
+2.0, 1.1, 1.0 
+
+
+QuickBooks 2002 (R2 and above) 
+(and Enterprise)* 
+1.1, 1.0 
+
+
+QuickBooks 2002 (R1)* 1.0 
+QuickBooks Online Edition 6.0, 5.0, 4.1, 4.0, 3.0, 2.1, 
+2.0 
+
+
+QuickBooks 2004-2007 Canadian 
+(using QBXMLRP2) 
+ CA3.0, CA2.0 
+
+
+QuickBooks 2004-2006 UK Editions 
+(using QBXMLRP2) 
+UK3.0, UK2.0 
+
+
+QuickBooks 2003, Canadian and UK Editions, CA2.0. 
+UK2.0)* and all later versions of these through Quick- 
+Books 2006 
+CA2.0. UK2.0 

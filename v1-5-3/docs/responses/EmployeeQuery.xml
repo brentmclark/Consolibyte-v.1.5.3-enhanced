@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<QBXML>
+<QBXMLMsgsRs>
+<EmployeeQueryRs requestID="RW1wbG95ZWVRdWVyeXwvdXNyL2hvbWUva3BhbG1lci9wdWJsaWNfaHRtbC9RdWlja0Jvb2tz" statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+<EmployeeRet>
+<ListID>30000-1211516415</ListID>
+<TimeCreated>2008-05-23T00:20:15-05:00</TimeCreated>
+<TimeModified>2008-05-23T00:20:17-05:00</TimeModified>
+<EditSequence>1211516417</EditSequence>
+<Name>Keith R Palmer</Name>
+<IsActive>true</IsActive>
+<Salutation>Mr.</Salutation>
+<FirstName>Keith</FirstName>
+<MiddleName>R</MiddleName>
+<LastName>Palmer</LastName>
+<EmployeeAddress>
+<Addr1>134 Stonemill Road</Addr1>
+<City>Storrs</City>
+<State>CT</State>
+<PostalCode>06279</PostalCode>
+</EmployeeAddress>
+<PrintAs>Keith R Palmer</PrintAs>
+<EmployeeType>Regular</EmployeeType>
+<Gender>Male</Gender>
+<HiredDate>2008-05-23</HiredDate>
+</EmployeeRet>
+</EmployeeQueryRs>
+</QBXMLMsgsRs>
+</QBXML>

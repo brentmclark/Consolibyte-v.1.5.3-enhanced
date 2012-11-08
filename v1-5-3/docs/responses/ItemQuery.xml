@@ -1,0 +1,219 @@
+<?xml version="1.0" ?>
+<QBXML>
+	<QBXMLMsgsRs>
+		<ItemQueryRs requestID="SXRlbVF1ZXJ5fC91c3IvaG9tZS9saWJyYXJ5X3BocC9RdWlja0Jvb2tz" statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+
+<ItemServiceRet>
+<ListID>1C0000-1216185015</ListID>
+<TimeCreated>2008-07-16T01:10:15-05:00</TimeCreated>
+<TimeModified>2008-07-16T01:10:15-05:00</TimeModified>
+<EditSequence>1216185015</EditSequence>
+<Name>My Service Item 453852393</Name>
+<FullName>My Service Item 453852393</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<SalesTaxCodeRef>
+<ListID>10000-1211065841</ListID>
+<FullName>Tax</FullName>
+</SalesTaxCodeRef>
+<SalesOrPurchase>
+<Desc>My Test Item Description</Desc>
+<Price>250.00</Price>
+<AccountRef>
+<ListID>60000-1211066026</ListID>
+<FullName>Sales</FullName>
+</AccountRef>
+</SalesOrPurchase>
+</ItemServiceRet>
+<ItemServiceRet>
+<ListID>180000-1216183128</ListID>
+<TimeCreated>2008-07-16T00:38:48-05:00</TimeCreated>
+<TimeModified>2008-07-16T00:38:48-05:00</TimeModified>
+<EditSequence>1216183128</EditSequence>
+<Name>My Service Item 541917613</Name>
+<FullName>My Service Item 541917613</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<SalesTaxCodeRef>
+<ListID>10000-1211065841</ListID>
+<FullName>Tax</FullName>
+</SalesTaxCodeRef>
+<SalesOrPurchase>
+<Desc>My Test Item Description</Desc>
+<Price>250.00</Price>
+<AccountRef>
+<ListID>60000-1211066026</ListID>
+<FullName>Sales</FullName>
+</AccountRef>
+</SalesOrPurchase>
+</ItemServiceRet>
+
+<ItemNonInventoryRet>
+<ListID>A0001-1213157282</ListID>
+<TimeCreated>2008-06-11T00:08:02-05:00</TimeCreated>
+<TimeModified>2008-06-11T00:08:02-05:00</TimeModified>
+<EditSequence>1213157282</EditSequence>
+<Name>Low Down Low</Name>
+<FullName>Low Down Low</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<SalesTaxCodeRef>
+<ListID>10000-1211065841</ListID>
+<FullName>Tax</FullName>
+</SalesTaxCodeRef>
+<SalesOrPurchase>
+<Price>25.00</Price>
+<AccountRef>
+<ListID>60000-1211066026</ListID>
+<FullName>Sales</FullName>
+</AccountRef>
+</SalesOrPurchase>
+</ItemNonInventoryRet>
+<ItemNonInventoryRet>
+<ListID>F0001-1213157283</ListID>
+<TimeCreated>2008-06-11T00:08:03-05:00</TimeCreated>
+<TimeModified>2008-06-11T00:08:03-05:00</TimeModified>
+<EditSequence>1213157283</EditSequence>
+<Name>Triumph Daytona 675</Name>
+<FullName>Triumph Daytona 675</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<SalesTaxCodeRef>
+<ListID>10000-1211065841</ListID>
+<FullName>Tax</FullName>
+</SalesTaxCodeRef>
+<SalesOrPurchase>
+<Desc>Triumph Daytona 675!</Desc>
+<Price>5000.25</Price>
+<AccountRef>
+<ListID>60000-1211066026</ListID>
+<FullName>Sales</FullName>
+</AccountRef>
+</SalesOrPurchase>
+</ItemNonInventoryRet>
+
+<ItemInventoryRet>
+<ListID>150000-1216182812</ListID>
+<TimeCreated>2008-07-16T00:33:32-05:00</TimeCreated>
+<TimeModified>2008-07-16T00:33:32-05:00</TimeModified>
+<EditSequence>1216182812</EditSequence>
+<Name>Test Inventory Item 1830389818</Name>
+<FullName>Test Inventory Item 1830389818</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<SalesTaxCodeRef>
+<ListID>10000-1211065841</ListID>
+<FullName>Tax</FullName>
+</SalesTaxCodeRef>
+<SalesPrice>25.25</SalesPrice>
+<IncomeAccountRef>
+<ListID>60000-1211066026</ListID>
+<FullName>Sales</FullName>
+</IncomeAccountRef>
+<PurchaseCost>0.00</PurchaseCost>
+<COGSAccountRef>
+<ListID>3D0000-1211514187</ListID>
+<FullName>Cost of Goods Sold</FullName>
+</COGSAccountRef>
+<PrefVendorRef>
+<ListID>1B0000-1216182810</ListID>
+<FullName>Test Vendor 582805075</FullName>
+</PrefVendorRef>
+<AssetAccountRef>
+<ListID>3C0000-1211514187</ListID>
+<FullName>Inventory Asset</FullName>
+</AssetAccountRef>
+<QuantityOnHand>0</QuantityOnHand>
+<AverageCost>0.00</AverageCost>
+<QuantityOnOrder>0</QuantityOnOrder>
+<QuantityOnSalesOrder>0</QuantityOnSalesOrder>
+</ItemInventoryRet>
+
+
+<ItemSalesTaxRet>
+<ListID>20001-1213157290</ListID>
+<TimeCreated>2008-06-11T00:08:10-05:00</TimeCreated>
+<TimeModified>2008-06-11T00:08:10-05:00</TimeModified>
+<EditSequence>1213157290</EditSequence>
+<Name>7% Sales Tax</Name>
+<IsActive>true</IsActive>
+<ItemDesc>7% Sales Tax</ItemDesc>
+<TaxRate>7.00</TaxRate>
+<TaxVendorRef>
+<ListID>70000-1212786892</ListID>
+<FullName>Revenue Services</FullName>
+</TaxVendorRef>
+</ItemSalesTaxRet>
+
+			
+			<ItemOtherChargeRet>
+				<ListID>80000003-1203476583</ListID>
+				<TimeCreated>2008-02-19T22:03:03-05:00</TimeCreated>
+				<TimeModified>2008-02-19T22:03:03-05:00</TimeModified>
+				<EditSequence>1203476583</EditSequence>
+				<Name>test item #1</Name>
+				<FullName>test item #1</FullName>
+				<IsActive>true</IsActive>
+				<Sublevel>0</Sublevel>
+				<SalesOrPurchase>
+					<Desc>test</Desc>
+					<Price>0.00</Price>
+					<AccountRef>
+						<ListID>80000007-1202655443</ListID>
+						<FullName>Sales</FullName>
+					</AccountRef>
+				</SalesOrPurchase>
+			</ItemOtherChargeRet>
+
+<ItemOtherChargeRet>
+<ListID>80000004-1203476606</ListID>
+<TimeCreated>2008-02-19T22:03:26-05:00</TimeCreated>
+<TimeModified>2008-02-19T22:03:26-05:00</TimeModified>
+<EditSequence>1203476606</EditSequence>
+<Name>test item #2</Name>
+<FullName>test item #2</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<SalesOrPurchase>
+<Desc>test item #2 descrip</Desc>
+<Price>25.00</Price>
+<AccountRef>
+<ListID>80000007-1202655443</ListID>
+<FullName>Sales</FullName>
+</AccountRef>
+</SalesOrPurchase>
+</ItemOtherChargeRet>
+
+			<ItemSubtotalRet>
+				<ListID>80000001-1202655444</ListID>
+				<TimeCreated>2008-02-10T09:57:24-05:00</TimeCreated>
+				<TimeModified>2008-02-10T09:57:24-05:00</TimeModified>
+				<EditSequence>1202655444</EditSequence>
+				<Name>Subtotal</Name>
+				<IsActive>true</IsActive>
+				<ItemDesc>Subtotal</ItemDesc>
+			</ItemSubtotalRet>
+
+			<ItemDiscountRet>
+				<ListID>80000002-1202655444</ListID>
+				<TimeCreated>2008-02-10T09:57:24-05:00</TimeCreated>
+				<TimeModified>2008-02-10T09:57:24-05:00</TimeModified>
+				<EditSequence>1202655444</EditSequence>
+				<Name>Discount</Name>
+				<FullName>Discount</FullName>
+				<IsActive>true</IsActive>
+				<Sublevel>0</Sublevel>
+				<ItemDesc>Discount</ItemDesc>
+				<SalesTaxCodeRef>
+					<ListID>80000001-1202655438</ListID>
+					<FullName>Tax</FullName>
+				</SalesTaxCodeRef>
+				<DiscountRate>0.00</DiscountRate>
+				<AccountRef>
+					<ListID>8000000D-1202655443</ListID>
+					<FullName>Discounts Given</FullName>
+				</AccountRef>
+			</ItemDiscountRet>
+</ItemQueryRs>
+</QBXMLMsgsRs>
+</QBXML>

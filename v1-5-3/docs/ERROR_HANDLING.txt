@@ -1,0 +1,166 @@
+
+
+When using the QuickBooks SOAP Server, there are any number of things that can 
+go wrong, especially during the development process. Here are the major types 
+of errors which are most likely to occur: 
+
+ - QuickBooks qbXML API errors: These are errors produced and reported by 
+ 	QuickBooks itself, and include things like: trying to stuff a string into a 
+ 	price field, string values that are too long to fit in the QuickBooks 
+ 	internal database, permissions errors, etc. All of these errors are 
+ 	assigned an integer error code between 0 and 10000. If a QuickBooks API 
+ 	error occurs, it will be logged, the Web Connector will display the error, 
+ 	and the queue entry should reflect the error status and code. 
+
+ - QuickBooks Web Connector errors: These are errors produced and reported by 
+ 	the QuickBooks Web Connector. The majority of these errors have something 
+ 	to do with: non-UTF-8 characters in your XML, unescaped XML entities, 
+ 	malformed XML, etc. All of these errors are assigned an error code that 
+ 	looks like this: 0x80040303. These error codes are reported back to the 
+ 	Web Connector and logged. Most of the time, QuickBooks *will not* send any 
+ 	response XML back, as the request usually never gets passed to QuickBooks. 
+ 	
+ - Mapped Function errors: Any callback function you define will have a 
+ 	pass-by-reference parameter $err in the function declaration. If an error 
+ 	occurs within your callback function (i.e.: your callback function 
+ 	discovers that it can not establish a connection to your Oracle database, 
+ 	or that the record it was supposed to do an AddCustomer for no longer 
+ 	exists, etc.), you can report the error to the QuickBooks package and abort 
+ 	the request by setting $err to a descriptive error message which will get 
+ 	logged and reported to the Web Connector. 
+ 
+ - Driver Class errors: These are errors which occur within the various 
+ 	QuickBooks_Driver_* classes (MySQL, PostgreSQL, etc.) and are usually 
+ 	show-stoppers. Check your connection string and that your database/driver 
+ 	back-end is running correctly. 
+ 
+ - Internal errors: Internal errors really shouldn't ever occur. You probably 
+ 	shouldn't worry about them too much. 
+
+The QuickBooks SOAP Server package provides a way to handle errors which occur 
+via registering error-handler callback functions. You can catch errors in one 
+of three ways:
+ - Catch errors by error number (i.e.: when error 3070 occurs, call this function ...)
+ - Catch errors by QuickBooks action type (i.e.: when an error occurs while doing CustomerAdd, call this function ...)
+ - Catch errors with a catch-all callback (i.e.: whenever an error occurs that isn't caught by another error handler, call this function ...)
+
+When you instantiate your QuickBooks SOAP server, you can provide an error 
+callback map that will look like this: 
+
+<?php
+
+$errmap = array(
+	'0x80040400' => '_my_function_name_0x80040400_errors', 		// Catch "your XML is invalid" errors
+	3070 => '_my_function_name_for_3070_errors', 				// Catch "string is too long to fit in that field" errors
+	'*' => '_my_function_name_for_any_other_errors', 			// This is the catch-all, it'll catch any errors the other handlers don't
+	);
+
+?>
+
+
+*** IMPORTANT *** 
+YOU WILL SAVE YOURSELF A LOT OF TROUBLE IF YOU:
+ a) Set up *at least* a catch-all error handler
+ b) Turn PHP's error reporting to E_ALL, turn on PHP error logging, and watch your PHP logs closely
+ c) Examine the QuickBooks Web Connector log file closely
+ d) Watch the driver quickbooks log, quickbooks queue, and queuebooks_ticket tables (if you're using the MySQL driver: quickbooks_ticket, quickbooks_queue, and quickbooks_log)
+
+
+Your error handler callback functions should look like this:
+
+<?php
+
+/**
+ * My error handler
+ *  
+ * @param string $requestID		The requestID of the item that failed
+ * @param string $user			The username of the user the request was queued for		
+ * @param string $action		The action of the queued item that failed
+ * @param mixed $ident			The ident string of the queued item that failed
+ * @param array $extra			Any extra data included with the request/response
+ * @param string $err			If your error handler generates an error... set this to the new error (you probably shouldn't be using this...)
+ * @param string $xml			Any XML returned from QuickBooks ( *** QuickBooks *will not* always return XML, do not rely on this being filled! )
+ * @param mixed $errnum			The error code (negative values indicate package errors, integers are QuickBooks errors, 0x0... errors are Web Connector errors)
+ * @param string $errmsg		The error message
+ * @return boolean
+ */
+function _my_error_handler($requestID, $user, $action, $ident, $extra, &$err, $xml, $errnum, $errmsg)
+{
+	... do something ... 
+	
+	// If you want to continue processing the *next* request even those this one had problems
+	return true;
+	
+	// If you want to halt the Web Connector and not run any more updates
+	return false;
+}
+
+?>
+
+I like to set up my error handlers like this:
+
+<?php
+
+$errmap = array(
+	'0x80040400' => '_quickbooks_error_handler_0x80040400', // Catch "your XML is invalid" errors
+	3070 => '_quickbooks_error_handler_3070', 				// Catch "string is too long to fit in that field" errors
+	'*' => '_quickbooks_error_handler_catchall', 					// This is the catch-all, it'll catch any errors the other handlers don't
+	);
+
+function _quickbooks_error_handler_0x80040400($requestID, $user, $action, $ident, $extra, &$err, $xml, $errnum, $errmsg)
+{
+	return _quickbooks_error_handler(__FUNCTION__, $requestID, $user, $action, $ident, $extra, $err, $xml, $errnum, $errmsg);
+}
+
+function _quickbooks_error_handler_3070($requestID, $user, $action, $ident, $extra, &$err, $xml, $errnum, $errmsg)
+{
+	return _quickbooks_error_handler(__FUNCTION__, $requestID, $user, $action, $ident, $extra, $err, $xml, $errnum, $errmsg);
+}
+
+function _quickbooks_error_handler_catchall($requestID, $user, $action, $ident, $extra, &$err, $xml, $errnum, $errmsg)
+{
+	return _quickbooks_error_handler(__FUNCTION__, $requestID, $user, $action, $ident, $extra, $err, $xml, $errnum, $errmsg);
+}
+
+function _quickbooks_error_handler($handler, $user, $requestID, $action, $ident, $extra, &$err, $xml, $errnum, $errmsg)
+{
+	$to = 'keith@AcademicKeys.com';
+	$subject = 'QuickBooks SOAP Server Error - ' . date('Y-m-d H:i:s');
+	$message = '';
+	
+	$message .= 'The error handler callback function that caught this error is: ' . $handler . "\n";
+	$message .= 'Action: ' . $action . "\n";
+	$message .= 'Ident: ' . $ident . "\n";
+	$message .= 'Date/Time: ' . date('Y-m-d H:i:s') . "\n";
+	$message .= 'Error Num.: ' . $errnum . "\n";
+	$message .= 'Error Message: ' . $errmsg . "\n";
+	$message .= "\n";
+	$message .= $xml;
+	
+	//mail($to, $subject, $message);
+	//syslog(LOG_ERR, $message);
+	//file_put_contents('/path/to/file.log', $message);
+	// ... etc. etc. etc. ...
+	
+	return false;
+}
+
+?>
+
+If an error occurs and the Web Connector dies, but no error is reported in the 
+logs or reflected in the queue, it is almost certainly because one of the 
+following things happened: 
+
+ - You have non-UTF-8 characters in your qbXML request: Use the 
+ 	QuickBooks_Utilities::castToField() method to cast to UTF-8 character set.
+ 
+ - You have a PHP error somewhere in your handler function: Turn PHP's error 
+ 	reporting to error_reporting(E_ALL), watch your PHP error logs, and examine 
+ 	the Web Connector log file closely. Usually you can figure out what went 
+ 	wrong. 
+ 	
+ - Find a stand-alone SOAP client and try to run some SOAP methods that way. 
+ 	Examine the requests and responses carefully for: non-ASCII characters, 
+ 	strange attributes, PHP errors or notices in the response, etc. I use this 
+ 	OS X SOAP client to help me debug: http://ditchnet.org/soapclient/
+

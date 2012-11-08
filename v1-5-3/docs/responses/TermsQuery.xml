@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<QBXML>
+	<QBXMLMsgsRs>
+		<TermsQueryRs requestID="VGVybXNRdWVyeXwvdXNyL2hvbWUvbGlicmFyeV9waHAvUXVpY2tCb29rcw==" statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+			
+			<StandardTermsRet>
+				<ListID>80000004-1202655443</ListID>
+				<TimeCreated>2008-02-10T09:57:23-05:00</TimeCreated>
+				<TimeModified>2008-02-10T09:57:23-05:00</TimeModified>
+				<EditSequence>1202655443</EditSequence>
+				<Name>Due on receipt</Name>
+				<IsActive>true</IsActive>
+				<StdDueDays>0</StdDueDays>
+				<StdDiscountDays>0</StdDiscountDays>
+			</StandardTermsRet>
+			
+<StandardTermsRet>
+<ListID>80000001-1202655443</ListID>
+<TimeCreated>2008-02-10T09:57:23-05:00</TimeCreated>
+<TimeModified>2008-02-10T09:57:23-05:00</TimeModified>
+<EditSequence>1202655443</EditSequence>
+<Name>Net 15</Name>
+<IsActive>true</IsActive>
+<StdDueDays>15</StdDueDays>
+<StdDiscountDays>0</StdDiscountDays>
+</StandardTermsRet>
+<StandardTermsRet>
+<ListID>80000002-1202655443</ListID>
+<TimeCreated>2008-02-10T09:57:23-05:00</TimeCreated>
+<TimeModified>2008-02-10T09:57:23-05:00</TimeModified>
+<EditSequence>1202655443</EditSequence>
+<Name>Net 30</Name>
+<IsActive>true</IsActive>
+<StdDueDays>30</StdDueDays>
+<StdDiscountDays>0</StdDiscountDays>
+</StandardTermsRet>
+<StandardTermsRet>
+<ListID>80000003-1202655443</ListID>
+<TimeCreated>2008-02-10T09:57:23-05:00</TimeCreated>
+<TimeModified>2008-02-10T09:57:23-05:00</TimeModified>
+<EditSequence>1202655443</EditSequence>
+<Name>Net 60</Name>
+<IsActive>true</IsActive>
+<StdDueDays>60</StdDueDays>
+<StdDiscountDays>0</StdDiscountDays>
+</StandardTermsRet>
+</TermsQueryRs>
+</QBXMLMsgsRs>
+</QBXML>

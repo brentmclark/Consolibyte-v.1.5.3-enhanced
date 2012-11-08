@@ -1,0 +1,24 @@
+
+
+ideas for an automatic integration builder
+
+
+
+ - commands: 
+ 	fetch a customer by name
+ 	fetch an invoice by reference number
+ 	
+ 	
+ 	on fetch a customer, run this query: 
+ 	on fetch a customer, write this file
+ 	
+ 	
+ 	add a customer
+ 		- to get the customer data, run this set of queries, MERGE THEM TOGETHER
+ 		
+ 	
+
+	add an invoice
+		- to get the invoice data, run this set of queries, MERGE THEM TOGETHER
+		
+		

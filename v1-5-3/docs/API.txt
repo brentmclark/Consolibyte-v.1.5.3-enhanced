@@ -1,0 +1,22 @@
+
+The API is *highly* experimental right now, and many of the API methods 
+*do not* work yet. 
+
+That said, if you want to try it out, have at it, and let me know when you find 
+bugs or missing features. 
+
+
+
+There are two components required to use the API:
+ - The QuickBooks_API client  			$client = new QuickBooks_API(...); $client->addCustomer(...);
+ - The QuickBooks_Server_API server		$server = new QuickBooks_Server_API(...); $server->handle();
+ 
+Before you begin using the API client, you should set up your API server as 
+shown in the docs/example_api_server.php file. *YOU CANNOT USE THE REGULAR 
+QUICKBOOKS SERVER ($server = new QuickBooks_Server(...)) WITH THE API CLIENT*. 
+You *MUST* use the API server ($server = new QuickBooks_Server_API(...);)
+
+In addition, *YOU CANNOT USER THE SAME USERNAME FOR BOTH A REGULAR QUICKBOOKS 
+SERVER AND A QUICKBOOKS API SERVER*. Create two users with 
+QuickBooks_Utilities::createUser(...) and use each with their own username if 
+you want to use both servers. 

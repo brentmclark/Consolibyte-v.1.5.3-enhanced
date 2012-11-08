@@ -1,0 +1,583 @@
+<?xml version="1.0" ?>
+<QBXML>
+<QBXMLMsgsRs>
+<CustomerQueryRs requestID="Q3VzdG9tZXJRdWVyeXwvdXNyL2hvbWUvbGlicmFyeV9waHAvUXVpY2tCb29rcw==" statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+<CustomerRet>
+<ListID>80000008-1203320848</ListID>
+<TimeCreated>2008-02-18T02:47:28-05:00</TimeCreated>
+<TimeModified>2008-02-18T02:47:28-05:00</TimeModified>
+<EditSequence>1203320848</EditSequence>
+<Name>13509 - S. Illinois Univ. Carbondale</Name>
+<FullName>13509 - S. Illinois Univ. Carbondale</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Southern Illinois University Carbondale</CompanyName>
+<FirstName>Linda update</FirstName>
+<LastName>Harnetiaux UPDATE</LastName>
+<BillAddress>
+<Addr1>Southern Illinois University Carbondale</Addr1>
+<Addr2>Electrical and Computer Engineering</Addr2>
+<Addr3>Engineering D47, Mailcode 6603, 1230 Linc</Addr3>
+<City>Carbondale</City>
+<State>IL</State>
+<PostalCode>62901</PostalCode>
+<Country>USA</Country>
+</BillAddress>
+<Phone>(618) 453-2120</Phone>
+<Fax>(618) 453-7972</Fax>
+<Email>lrendlem@siu.edu</Email>
+<Contact>Linda Harnetiaux</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000004-1202930139</ListID>
+<TimeCreated>2008-02-13T14:15:39-05:00</TimeCreated>
+<TimeModified>2008-02-13T14:15:39-05:00</TimeModified>
+<EditSequence>1202930139</EditSequence>
+<Name>15780 - UA Zuckerman Coll. of Public Heal</Name>
+<FullName>15780 - UA Zuckerman Coll. of Public Heal</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>UA Zuckerman College of Public Health</CompanyName>
+<FirstName>Annette</FirstName>
+<LastName>Hillman</LastName>
+<BillAddress>
+<Addr1>UA Zuckerman College of Public Health</Addr1>
+<Addr2>Public Health Administration</Addr2>
+<Country>USA</Country>
+</BillAddress>
+<Email>Ash@U.Arizona.edu</Email>
+<Contact>Annette Hillman</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000007-1202948082</ListID>
+<TimeCreated>2008-02-13T19:14:42-05:00</TimeCreated>
+<TimeModified>2008-02-13T19:14:42-05:00</TimeModified>
+<EditSequence>1202948082</EditSequence>
+<Name>17568 - College of Veterinary Medicine</Name>
+<FullName>17568 - College of Veterinary Medicine</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>College of Veterinary Medicine</CompanyName>
+<FirstName>Calvin</FirstName>
+<LastName>Johnson</LastName>
+<BillAddress>
+<Addr1>College of Veterinary Medicine</Addr1>
+<Addr2>Office of the Dean</Addr2>
+<Addr3>104 Greene Hall, Auburn University</Addr3>
+<City>Auburn</City>
+<State>AL</State>
+<PostalCode>36849</PostalCode>
+<Country>USA</Country>
+</BillAddress>
+<Phone>(334) 844-2650</Phone>
+<AltPhone>(334) 844-2650</AltPhone>
+<Fax>(334) 844-2652</Fax>
+<Email>johncal@auburn.edu</Email>
+<Contact>Calvin Johnson</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000010-1203736738</ListID>
+<TimeCreated>2008-02-22T22:18:58-05:00</TimeCreated>
+<TimeModified>2008-02-22T22:18:58-05:00</TimeModified>
+<EditSequence>1203736738</EditSequence>
+<Name>21060 - Keith-Accounting-HomePC</Name>
+<FullName>21060 - Keith-Accounting-HomePC</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Keith-Accounting-HomePC</CompanyName>
+<FirstName>Hui Leng</FirstName>
+<LastName>Ng</LastName>
+<BillAddress>
+<Addr1>Keith-Accounting-HomePC</Addr1>
+<Addr2>Sch. of Civil &amp; Environmental Enginee</Addr2>
+<Addr3>50 Nanyang Avenue , Block N1-01a-29</Addr3>
+<City>Singapore</City>
+<PostalCode>639798</PostalCode>
+<Country>Singapore</Country>
+</BillAddress>
+<Phone>(65)65138180</Phone>
+<Fax>(65)67910676</Fax>
+<Email>hlng@ntu.edu.sg</Email>
+<Contact>Hui Leng Ng</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000013-1204245844</ListID>
+<TimeCreated>2008-02-28T19:44:04-05:00</TimeCreated>
+<TimeModified>2008-02-28T19:44:04-05:00</TimeModified>
+<EditSequence>1204245844</EditSequence>
+<Name>21060 - Nanyang Technological University</Name>
+<FullName>21060 - Nanyang Technological University</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Nanyang Technological University</CompanyName>
+<FirstName>Hui Leng</FirstName>
+<LastName>Ng</LastName>
+<BillAddress>
+<Addr1>Nanyang Technological University</Addr1>
+<Addr2>Sch. of Civil &amp; Environmental Enginee</Addr2>
+<Addr3>50 Nanyang Avenue , Block N1-01a-29</Addr3>
+<City>Singapore</City>
+<PostalCode>639798</PostalCode>
+<Country>Singapore</Country>
+</BillAddress>
+<Phone>(65)65138180</Phone>
+<Fax>(65)67910676</Fax>
+<Email>hlng@ntu.edu.sg</Email>
+<Contact>Hui Leng Ng</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000011-1203736738</ListID>
+<TimeCreated>2008-02-22T22:18:58-05:00</TimeCreated>
+<TimeModified>2008-02-22T22:18:58-05:00</TimeModified>
+<EditSequence>1203736738</EditSequence>
+<Name>21062 - Keith-Accounting-HomePC</Name>
+<FullName>21062 - Keith-Accounting-HomePC</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Keith-Accounting-HomePC</CompanyName>
+<FirstName>Isaac</FirstName>
+<LastName>Kerlow</LastName>
+<BillAddress>
+<Addr1>Keith-Accounting-HomePC</Addr1>
+<Addr2>School of Art, Design and Media</Addr2>
+<Addr3>81 Nanyang Drive #03-15</Addr3>
+<City>Singapore</City>
+<PostalCode>637458</PostalCode>
+<Country>Singapore</Country>
+</BillAddress>
+<Phone>(65) 6316 8821</Phone>
+<Fax>(65) 6795 3140</Fax>
+<Email>isaac@ntu.edu.sg</Email>
+<Contact>Isaac Kerlow</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000012-1203739119</ListID>
+<TimeCreated>2008-02-22T22:58:39-05:00</TimeCreated>
+<TimeModified>2008-03-07T22:50:46-05:00</TimeModified>
+<EditSequence>1204948246</EditSequence>
+<Name>21062 - Nanyang Technological University</Name>
+<FullName>21062 - Nanyang Technological University</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Nanyang Technological University</CompanyName>
+<FirstName>Isaac</FirstName>
+<LastName>Kerlow</LastName>
+<BillAddress>
+<Addr1>Nanyang Technological University</Addr1>
+<Addr2>School of Art, Design and Media</Addr2>
+<Addr3>81 Nanyang Drive #03-15</Addr3>
+<City>Singapore</City>
+<PostalCode>637458</PostalCode>
+<Country>Singapore</Country>
+</BillAddress>
+<ShipAddress>
+<Addr1>Nanyang Technological University</Addr1>
+<Addr2>School of Art, Design and Media</Addr2>
+<Addr3>81 Nanyang Drive #03-15</Addr3>
+<City>Singapore</City>
+<PostalCode>637458</PostalCode>
+<Country>Singapore</Country>
+</ShipAddress>
+<Phone>(65) 6316 8821</Phone>
+<Fax>(65) 6795 3140</Fax>
+<Email>isaac@ntu.edu.sg</Email>
+<Contact>Isaac Kerlow</Contact>
+
+	<TermsRef>
+		<ListID>80000004-1202783300</ListID>
+		<FullName>Due on receipt</FullName>
+	</TermsRef>
+
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>8000000F-1203736737</ListID>
+<TimeCreated>2008-02-22T22:18:57-05:00</TimeCreated>
+<TimeModified>2008-02-22T22:18:57-05:00</TimeModified>
+<EditSequence>1203736737</EditSequence>
+<Name>21063 - Keith-Accounting-HomePC</Name>
+<FullName>21063 - Keith-Accounting-HomePC</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Keith-Accounting-HomePC</CompanyName>
+<FirstName>Ton</FirstName>
+<LastName>Notermans</LastName>
+<BillAddress>
+<Addr1>Keith-Accounting-HomePC</Addr1>
+<Addr2>School of International Studies</Addr2>
+<Addr3>Via verdi 8/10</Addr3>
+<City>Trento I-38100</City>
+<Country>Italy</Country>
+</BillAddress>
+<Phone>+390461883150</Phone>
+<Fax>+390461883152</Fax>
+<Email>ton.notermans@sis.unitn.it</Email>
+<Contact>Ton Notermans</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>8000000D-1203736483</ListID>
+<TimeCreated>2008-02-22T22:14:43-05:00</TimeCreated>
+<TimeModified>2008-03-07T22:50:05-05:00</TimeModified>
+<EditSequence>1204948205</EditSequence>
+<Name>21063 - University of Trento</Name>
+<FullName>21063 - University of Trento</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>University of Trento</CompanyName>
+<FirstName>Ton</FirstName>
+<LastName>Notermans</LastName>
+<BillAddress>
+<Addr1>University of Trento</Addr1>
+<Addr2>School of International Studies</Addr2>
+<Addr3>Via verdi 8/10</Addr3>
+<City>Trento I-38100</City>
+<Country>Italy</Country>
+</BillAddress>
+<Phone>+390461883150</Phone>
+<Fax>+390461883152</Fax>
+<Email>ton.notermans@sis.unitn.it</Email>
+<Contact>Ton Notermans</Contact>
+<TermsRef>
+<ListID>80000003-1202783300</ListID>
+<FullName>Net 60</FullName>
+</TermsRef>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>8000000E-1203736737</ListID>
+<TimeCreated>2008-02-22T22:18:57-05:00</TimeCreated>
+<TimeModified>2008-02-22T22:18:57-05:00</TimeModified>
+<EditSequence>1203736737</EditSequence>
+<Name>21064 - Keith-Accounting-HomePC</Name>
+<FullName>21064 - Keith-Accounting-HomePC</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Keith-Accounting-HomePC</CompanyName>
+<FirstName>Yechezkel</FirstName>
+<LastName>Mualem</LastName>
+<BillAddress>
+<Addr1>Keith-Accounting-HomePC</Addr1>
+<Addr2>Soil &amp; Water Sciences</Addr2>
+<City>The Faculty of Agriculture</City>
+<State>POB 12</State>
+<Country>Israel</Country>
+</BillAddress>
+<Phone>972-8-9489174</Phone>
+<AltPhone>972-2-5882929</AltPhone>
+<Fax>972-8-9475181</Fax>
+<Email>mualem@agri.huji.ac.il</Email>
+<Contact>Yechezkel Mualem</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>8000000C-1203736483</ListID>
+<TimeCreated>2008-02-22T22:14:43-05:00</TimeCreated>
+<TimeModified>2008-02-22T22:14:43-05:00</TimeModified>
+<EditSequence>1203736483</EditSequence>
+<Name>21064 - The Hebrew Univ. of Jerusalem</Name>
+<FullName>21064 - The Hebrew Univ. of Jerusalem</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>The Hebrew University of Jerusalem</CompanyName>
+<FirstName>Yechezkel</FirstName>
+<LastName>Mualem</LastName>
+<BillAddress>
+<Addr1>The Hebrew University of Jerusalem</Addr1>
+<Addr2>Soil &amp; Water Sciences</Addr2>
+<City>The Faculty of Agriculture</City>
+<State>POB 12</State>
+<Country>Israel</Country>
+</BillAddress>
+<Phone>972-8-9489174</Phone>
+<AltPhone>972-2-5882929</AltPhone>
+<Fax>972-8-9475181</Fax>
+<Email>mualem@agri.huji.ac.il</Email>
+<Contact>Yechezkel Mualem</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>8000000A-1203736097</ListID>
+<TimeCreated>2008-02-22T22:08:17-05:00</TimeCreated>
+<TimeModified>2008-02-22T22:08:17-05:00</TimeModified>
+<EditSequence>1203736097</EditSequence>
+<Name>21067 - Northwest Missouri State Univ.</Name>
+<FullName>21067 - Northwest Missouri State Univ.</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Northwest Missouri State University</CompanyName>
+<FirstName>Michelle</FirstName>
+<LastName>Drake</LastName>
+<BillAddress>
+<Addr1>Northwest Missouri State University</Addr1>
+<Addr2>Human Resources</Addr2>
+<Addr3>800 University Drive</Addr3>
+<City>Maryville</City>
+<State>MO</State>
+<PostalCode>64468</PostalCode>
+<Country>USA</Country>
+</BillAddress>
+<Phone>660-562-1127</Phone>
+<Fax>660-562-1034</Fax>
+<Email>mdrake@nwmissouri.edu</Email>
+<Contact>Michelle Drake</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>8000000B-1203736254</ListID>
+<TimeCreated>2008-02-22T22:10:54-05:00</TimeCreated>
+<TimeModified>2008-02-22T22:10:54-05:00</TimeModified>
+<EditSequence>1203736254</EditSequence>
+<Name>21068 - University of Alabama</Name>
+<FullName>21068 - University of Alabama</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>University of Alabama</CompanyName>
+<FirstName>Inge</FirstName>
+<LastName>Archer</LastName>
+<BillAddress>
+<Addr1>University of Alabama</Addr1>
+<Addr2>Chemical &amp; Biological Engineering</Addr2>
+<Addr3>201 7th Avenue, A127 Bevill</Addr3>
+<City>Tuscaloosa</City>
+<State>AL</State>
+<PostalCode>35487</PostalCode>
+<Country>USA</Country>
+</BillAddress>
+<Phone>205-348-6452</Phone>
+<AltPhone>205-348-6452</AltPhone>
+<Email>iarcher@eng.ua.edu</Email>
+<Contact>Inge Archer</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000009-1203734427</ListID>
+<TimeCreated>2008-02-22T21:40:27-05:00</TimeCreated>
+<TimeModified>2008-02-22T21:40:27-05:00</TimeModified>
+<EditSequence>1203734427</EditSequence>
+<Name>21070 - Medical College of Georgia</Name>
+<FullName>21070 - Medical College of Georgia</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Medical College of Georgia</CompanyName>
+<FirstName>C. Carol</FirstName>
+<LastName>Poston</LastName>
+<BillAddress>
+<City>Medical College of</City>
+<State>GA</State>
+<Country>USA</Country>
+</BillAddress>
+<Phone>706-721-2863</Phone>
+<Fax>706-721-7136</Fax>
+<Email>CarolP@mail.mcg.edu</Email>
+<Contact>C. Carol  Poston</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000001-1202917054</ListID>
+<TimeCreated>2008-02-13T10:37:34-05:00</TimeCreated>
+<TimeModified>2008-02-13T10:37:34-05:00</TimeModified>
+<EditSequence>1202917054</EditSequence>
+<Name>21095 - University of Nebraska-Lincoln</Name>
+<FullName>21095 - University of Nebraska-Lincoln</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>University of Nebraska-Lincoln</CompanyName>
+<FirstName>Donald</FirstName>
+<LastName>Beermann</LastName>
+<BillAddress>
+<Addr1>University of Nebraska-Lincoln</Addr1>
+<Addr2>Institutional Animal Care Program</Addr2>
+<Addr3>110 Mussehl Hall, PO Box 830720</Addr3>
+<City>Lincoln</City>
+<State>NE</State>
+<PostalCode>68583-0720</PostalCode>
+<Country>USA</Country>
+</BillAddress>
+<Phone>402-472-4430</Phone>
+<Fax>402-472-5887</Fax>
+<Email>dbeermann2@unl.edu</Email>
+<Contact>Donald Beermann</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000003-1202926118</ListID>
+<TimeCreated>2008-02-13T13:08:38-05:00</TimeCreated>
+<TimeModified>2008-02-13T13:08:38-05:00</TimeModified>
+<EditSequence>1202926118</EditSequence>
+<Name>21145 - Inst.</Name>
+<FullName>21145 - Inst.</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Inst.</CompanyName>
+<FirstName>Keith</FirstName>
+<LastName>Palmer Jr.</LastName>
+<BillAddress>
+<Addr1>Inst.</Addr1>
+<Addr2>Dept.</Addr2>
+<City>Willington</City>
+<State>CT</State>
+<PostalCode>06279</PostalCode>
+<Country>USA</Country>
+</BillAddress>
+<Phone>1 (860) 367-5101</Phone>
+<Email>keith@uglyslug.com</Email>
+<Contact>Keith Palmer Jr.</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000005-1202931519</ListID>
+<TimeCreated>2008-02-13T14:38:39-05:00</TimeCreated>
+<TimeModified>2008-02-13T14:38:39-05:00</TimeModified>
+<EditSequence>1202931519</EditSequence>
+<Name>21148 - test</Name>
+<FullName>21148 - test</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>test</CompanyName>
+<FirstName>Keith</FirstName>
+<LastName>Palmer</LastName>
+<BillAddress>
+<Addr1>test</Addr1>
+<Addr2>test</Addr2>
+<City>test</City>
+<State>DC</State>
+<Country>USA</Country>
+</BillAddress>
+<Phone>test</Phone>
+<Fax>test</Fax>
+<Email>test@test.com</Email>
+<Contact>Keith Palmer</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000006-1202947422</ListID>
+<TimeCreated>2008-02-13T19:03:42-05:00</TimeCreated>
+<TimeModified>2008-02-13T19:03:42-05:00</TimeModified>
+<EditSequence>1202947422</EditSequence>
+<Name>4447 - Carnegie Mellon University</Name>
+<FullName>4447 - Carnegie Mellon University</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<CompanyName>Carnegie Mellon University</CompanyName>
+<FirstName>Barbara</FirstName>
+<LastName>Carlson</LastName>
+<BillAddress>
+<Addr1>Carnegie Mellon University</Addr1>
+<Addr2>Tepper School of Business</Addr2>
+<Addr3>Posner Hall Room 232, 5000 Forbes Avenue</Addr3>
+<City>Pittsburgh</City>
+<State>PA</State>
+<PostalCode>15210-3890</PostalCode>
+<Country>USA</Country>
+</BillAddress>
+<Phone>(412) 268-1342</Phone>
+<AltPhone>(412) 268-1342</AltPhone>
+<Fax>(412) 268-7357</Fax>
+<Email>bcarlson@andrew.cmu.edu</Email>
+<Contact>Barbara Carlson</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000016-1204497078</ListID>
+<TimeCreated>2008-03-02T17:31:18-05:00</TimeCreated>
+<TimeModified>2008-03-02T17:31:18-05:00</TimeModified>
+<EditSequence>1204497078</EditSequence>
+<Name>Bradd Hammond</Name>
+<FullName>Bradd Hammond</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000002-1202917296</ListID>
+<TimeCreated>2008-02-13T10:41:36-05:00</TimeCreated>
+<TimeModified>2008-02-13T10:41:36-05:00</TimeModified>
+<EditSequence>1202917296</EditSequence>
+<Name>Elísabet Þorsteinsdóttir</Name>
+<FullName>Elísabet Þorsteinsdóttir</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<FirstName>Elísabet</FirstName>
+<LastName>Þorsteinsdóttir</LastName>
+<BillAddress>
+<Addr1>Elísabet Þorsteinsdóttir</Addr1>
+</BillAddress>
+<Contact>Elísabet Þorsteinsdóttir</Contact>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000014-1204497077</ListID>
+<TimeCreated>2008-03-02T17:31:17-05:00</TimeCreated>
+<TimeModified>2008-03-02T17:31:17-05:00</TimeModified>
+<EditSequence>1204497077</EditSequence>
+<Name>Ryan  Inouye</Name>
+<FullName>Ryan  Inouye</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+<CustomerRet>
+<ListID>80000015-1204497077</ListID>
+<TimeCreated>2008-03-02T17:31:17-05:00</TimeCreated>
+<TimeModified>2008-03-02T17:31:17-05:00</TimeModified>
+<EditSequence>1204497077</EditSequence>
+<Name>zach  bare</Name>
+<FullName>zach  bare</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+<Balance>0.00</Balance>
+<TotalBalance>0.00</TotalBalance>
+<JobStatus>None</JobStatus>
+</CustomerRet>
+</CustomerQueryRs>
+</QBXMLMsgsRs>
+</QBXML>

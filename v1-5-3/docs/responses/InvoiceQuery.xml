@@ -1,0 +1,299 @@
+<?xml version="1.0" ?>
+<QBXML>
+	<QBXMLMsgsRs>
+		<InvoiceQueryRs requestID="SW52b2ljZVF1ZXJ5fC91c3IvaG9tZS9saWJyYXJ5X3BocC9RdWlja0Jvb2tz" statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+			<InvoiceRet>
+				<TxnID>1-1203476613</TxnID>
+				<TimeCreated>2008-02-19T22:03:33-05:00</TimeCreated>
+				<TimeModified>2008-02-19T22:03:33-05:00</TimeModified>
+				<EditSequence>1203476613</EditSequence>
+				<TxnNumber>1</TxnNumber>
+				<CustomerRef>
+					<ListID>80000001-1203476536</ListID>
+					<FullName>test</FullName>
+				</CustomerRef>
+				<ARAccountRef>
+					<ListID>8000001E-1203476531</ListID>
+					<FullName>Accounts Receivable</FullName>
+				</ARAccountRef>
+				<TxnDate>2008-02-19</TxnDate>
+				<RefNumber>1</RefNumber>
+				<BillAddress>
+					<Addr1>test</Addr1>
+				</BillAddress>
+				<IsPending>false</IsPending>
+				<IsFinanceCharge>false</IsFinanceCharge>
+				<DueDate>2008-02-19</DueDate>
+				<ShipDate>2008-02-19</ShipDate>
+				<Subtotal>25.00</Subtotal>
+				<SalesTaxPercentage>0.00</SalesTaxPercentage>
+				<SalesTaxTotal>0.00</SalesTaxTotal>
+				<AppliedAmount>0.00</AppliedAmount>
+				<BalanceRemaining>25.00</BalanceRemaining>
+				<IsPaid>false</IsPaid>
+				<IsToBePrinted>true</IsToBePrinted>
+				
+				<InvoiceLineRet>
+					<TxnLineID>3-1203476613</TxnLineID>
+					<ItemRef>
+						<ListID>80000003-1203476583</ListID>
+						<FullName>test item #1</FullName>
+					</ItemRef>
+					<Desc>test</Desc>
+					<Rate>15.65</Rate>
+					<Amount>22.95</Amount>
+					<SalesTaxCodeRef>
+						<ListID>80000002-1202655438</ListID>
+						<FullName>Non</FullName>
+					</SalesTaxCodeRef>
+				</InvoiceLineRet>
+				
+				<InvoiceLineRet>
+					<TxnLineID>4-1203476613</TxnLineID>
+					<ItemRef>
+						<ListID>80000004-1203476606</ListID>
+						<FullName>test item #2</FullName>
+					</ItemRef>
+					<Desc>test item #2 descrip</Desc>
+					<Rate>25.00</Rate>
+					<Amount>25.00</Amount>
+					<SalesTaxCodeRef>
+						<ListID>80000002-1202655438</ListID>
+						<FullName>Non</FullName>
+					</SalesTaxCodeRef>
+				</InvoiceLineRet>
+				
+			</InvoiceRet>
+<InvoiceRet>
+<TxnID>5-1209525813</TxnID>
+<TimeCreated>2008-04-29T23:23:33-05:00</TimeCreated>
+<TimeModified>2008-04-29T23:23:33-05:00</TimeModified>
+<EditSequence>1209525813</EditSequence>
+<TxnNumber>2</TxnNumber>
+<CustomerRef>
+<ListID>80000002-1209525813</ListID>
+<FullName>Keith Palmer</FullName>
+</CustomerRef>
+<ARAccountRef>
+<ListID>8000001E-1203476531</ListID>
+<FullName>Accounts Receivable</FullName>
+</ARAccountRef>
+<TxnDate>2008-04-29</TxnDate>
+<BillAddress>
+<Addr1>UglySlug.com</Addr1>
+<Addr2>Keith Palmer</Addr2>
+</BillAddress>
+<IsPending>false</IsPending>
+<IsFinanceCharge>false</IsFinanceCharge>
+<DueDate>2008-04-29</DueDate>
+<ShipDate>2008-04-29</ShipDate>
+<Subtotal>200.00</Subtotal>
+<SalesTaxPercentage>0.00</SalesTaxPercentage>
+<SalesTaxTotal>0.00</SalesTaxTotal>
+<AppliedAmount>0.00</AppliedAmount>
+<BalanceRemaining>200.00</BalanceRemaining>
+<Memo>Opening balance</Memo>
+<IsPaid>false</IsPaid>
+<IsToBePrinted>false</IsToBePrinted>
+<InvoiceLineRet>
+<TxnLineID>7-1209525813</TxnLineID>
+<Desc>Opening balance</Desc>
+<Rate>200</Rate>
+<Amount>200.00</Amount>
+</InvoiceLineRet>
+</InvoiceRet>
+<InvoiceRet>
+<TxnID>8-1209525841</TxnID>
+<TimeCreated>2008-04-29T23:24:01-05:00</TimeCreated>
+<TimeModified>2008-04-29T23:26:52-05:00</TimeModified>
+<EditSequence>1209525841</EditSequence>
+<TxnNumber>3</TxnNumber>
+<CustomerRef>
+<ListID>80000003-1209525841</ListID>
+<FullName>Shannon Daniels</FullName>
+</CustomerRef>
+<ARAccountRef>
+<ListID>8000001E-1203476531</ListID>
+<FullName>Accounts Receivable</FullName>
+</ARAccountRef>
+<TxnDate>2008-04-29</TxnDate>
+<BillAddress>
+<Addr1>Shannon Daniels</Addr1>
+</BillAddress>
+<IsPending>false</IsPending>
+<IsFinanceCharge>false</IsFinanceCharge>
+<DueDate>2008-04-29</DueDate>
+<ShipDate>2008-04-29</ShipDate>
+<Subtotal>190.00</Subtotal>
+<SalesTaxPercentage>0.00</SalesTaxPercentage>
+<SalesTaxTotal>0.00</SalesTaxTotal>
+<AppliedAmount>-25.25</AppliedAmount>
+<BalanceRemaining>164.75</BalanceRemaining>
+<Memo>Opening balance</Memo>
+<IsPaid>false</IsPaid>
+<IsToBePrinted>false</IsToBePrinted>
+<InvoiceLineRet>
+<TxnLineID>A-1209525841</TxnLineID>
+<Desc>Opening balance</Desc>
+<Rate>190</Rate>
+<Amount>190.00</Amount>
+</InvoiceLineRet>
+</InvoiceRet>
+<InvoiceRet>
+<TxnID>B-1209525866</TxnID>
+<TimeCreated>2008-04-29T23:24:26-05:00</TimeCreated>
+<TimeModified>2008-04-29T23:24:26-05:00</TimeModified>
+<EditSequence>1209525866</EditSequence>
+<TxnNumber>4</TxnNumber>
+<CustomerRef>
+<ListID>80000003-1209525841</ListID>
+<FullName>Shannon Daniels</FullName>
+</CustomerRef>
+<ARAccountRef>
+<ListID>8000001E-1203476531</ListID>
+<FullName>Accounts Receivable</FullName>
+</ARAccountRef>
+<TxnDate>2008-04-29</TxnDate>
+<RefNumber>2</RefNumber>
+<BillAddress>
+<Addr1>Shannon Daniels</Addr1>
+</BillAddress>
+<IsPending>false</IsPending>
+<IsFinanceCharge>false</IsFinanceCharge>
+<DueDate>2008-04-29</DueDate>
+<ShipDate>2008-04-29</ShipDate>
+<Subtotal>100.00</Subtotal>
+<SalesTaxPercentage>0.00</SalesTaxPercentage>
+<SalesTaxTotal>0.00</SalesTaxTotal>
+<AppliedAmount>0.00</AppliedAmount>
+<BalanceRemaining>100.00</BalanceRemaining>
+<Memo>test memo goes here</Memo>
+<IsPaid>false</IsPaid>
+<IsToBePrinted>true</IsToBePrinted>
+<InvoiceLineRet>
+<TxnLineID>D-1209525866</TxnLineID>
+<ItemRef>
+<ListID>80000003-1203476583</ListID>
+<FullName>test item #1</FullName>
+</ItemRef>
+<Desc>test</Desc>
+<Quantity>2</Quantity>
+<Rate>50.00</Rate>
+<Amount>100.00</Amount>
+<SalesTaxCodeRef>
+<ListID>80000002-1202655438</ListID>
+<FullName>Non</FullName>
+</SalesTaxCodeRef>
+</InvoiceLineRet>
+</InvoiceRet>
+<InvoiceRet>
+<TxnID>E-1209525887</TxnID>
+<TimeCreated>2008-04-29T23:24:47-05:00</TimeCreated>
+<TimeModified>2008-04-29T23:24:47-05:00</TimeModified>
+<EditSequence>1209525887</EditSequence>
+<TxnNumber>5</TxnNumber>
+<CustomerRef>
+<ListID>80000003-1209525841</ListID>
+<FullName>Shannon Daniels</FullName>
+</CustomerRef>
+<ARAccountRef>
+<ListID>8000001E-1203476531</ListID>
+<FullName>Accounts Receivable</FullName>
+</ARAccountRef>
+<TxnDate>2008-04-29</TxnDate>
+<RefNumber>3</RefNumber>
+<BillAddress>
+<Addr1>Shannon Daniels</Addr1>
+</BillAddress>
+<IsPending>false</IsPending>
+<IsFinanceCharge>false</IsFinanceCharge>
+<DueDate>2008-04-29</DueDate>
+<ShipDate>2008-04-29</ShipDate>
+<Subtotal>430.00</Subtotal>
+<SalesTaxPercentage>0.00</SalesTaxPercentage>
+<SalesTaxTotal>0.00</SalesTaxTotal>
+<AppliedAmount>0.00</AppliedAmount>
+<BalanceRemaining>430.00</BalanceRemaining>
+<IsPaid>false</IsPaid>
+<IsToBePrinted>true</IsToBePrinted>
+<InvoiceLineRet>
+<TxnLineID>10-1209525887</TxnLineID>
+<ItemRef>
+<ListID>80000004-1203476606</ListID>
+<FullName>test item #2</FullName>
+</ItemRef>
+<Desc>test item #2 descrip</Desc>
+<Quantity>3</Quantity>
+<Rate>25.00</Rate>
+<Amount>75.00</Amount>
+<SalesTaxCodeRef>
+<ListID>80000002-1202655438</ListID>
+<FullName>Non</FullName>
+</SalesTaxCodeRef>
+</InvoiceLineRet>
+<InvoiceLineRet>
+<TxnLineID>11-1209525887</TxnLineID>
+<ItemRef>
+<ListID>80000004-1203476606</ListID>
+<FullName>test item #2</FullName>
+</ItemRef>
+<Desc>shannon ordered me!</Desc>
+<Quantity>1</Quantity>
+<Rate>355.00</Rate>
+<Amount>355.00</Amount>
+<SalesTaxCodeRef>
+<ListID>80000002-1202655438</ListID>
+<FullName>Non</FullName>
+</SalesTaxCodeRef>
+</InvoiceLineRet>
+</InvoiceRet>
+<InvoiceRet>
+<TxnID>12-1209525901</TxnID>
+<TimeCreated>2008-04-29T23:25:01-05:00</TimeCreated>
+<TimeModified>2008-04-29T23:25:01-05:00</TimeModified>
+<EditSequence>1209525901</EditSequence>
+<TxnNumber>6</TxnNumber>
+<CustomerRef>
+<ListID>80000002-1209525813</ListID>
+<FullName>Keith Palmer</FullName>
+</CustomerRef>
+<ARAccountRef>
+<ListID>8000001E-1203476531</ListID>
+<FullName>Accounts Receivable</FullName>
+</ARAccountRef>
+<TxnDate>2008-04-29</TxnDate>
+<RefNumber>4</RefNumber>
+<BillAddress>
+<Addr1>UglySlug.com</Addr1>
+<Addr2>Keith Palmer</Addr2>
+</BillAddress>
+<IsPending>false</IsPending>
+<IsFinanceCharge>false</IsFinanceCharge>
+<DueDate>2008-04-29</DueDate>
+<ShipDate>2008-04-29</ShipDate>
+<Subtotal>31.90</Subtotal>
+<SalesTaxPercentage>0.00</SalesTaxPercentage>
+<SalesTaxTotal>0.00</SalesTaxTotal>
+<AppliedAmount>0.00</AppliedAmount>
+<BalanceRemaining>31.90</BalanceRemaining>
+<IsPaid>false</IsPaid>
+<IsToBePrinted>true</IsToBePrinted>
+<InvoiceLineRet>
+<TxnLineID>14-1209525901</TxnLineID>
+<ItemRef>
+<ListID>80000003-1203476583</ListID>
+<FullName>test item #1</FullName>
+</ItemRef>
+<Desc> testet saggd</Desc>
+<Quantity>2</Quantity>
+<Rate>15.95</Rate>
+<Amount>31.90</Amount>
+<SalesTaxCodeRef>
+<ListID>80000002-1202655438</ListID>
+<FullName>Non</FullName>
+</SalesTaxCodeRef>
+</InvoiceLineRet>
+</InvoiceRet>
+</InvoiceQueryRs>
+</QBXMLMsgsRs>
+</QBXML>

@@ -1,0 +1,70 @@
+
+Here are some common problems and solutions:
+
+--------------------------------------------------------------------------------
+
+p. The QuickBooks Web Connector will not authenticate to my SOAP server!
+s. The most common reasons for this are...: 
+	- You didn't create your table structure correctly, use QuickBooks_Utilities::initialize(...) to create your MySQL tables
+	- You didn't add a user (or didn't add one correctly), use the QuickBooks_Utilities::createUser() method to create a user. It *WILL NOT* work if you just do an SQL INSERT INTO quickbooks_user ... through phpMyAdmin or the mysql console!
+	- You have an error in your PHP request/response handler code, check the Web Connector log and your PHP error log for error messages or notices
+	- Call $server->handle() like this: $soap = $server->handle(true); and then write $soap out to a file (make sure the file is writable by the webserver) and look through the file for errors/notices
+	
+p. Everything seems to be happening twice... each item in the queue gets run twice!
+s. You're probably calling the $server->handle(); method twice in your SOAP server script.
+
+p. I don't have the PHP SOAP server extension installed, can I still use this framework?
+s. As of v1.5, *yes*. The PHP SOAP server extension *is not* neccessary. You can specify that you'd rather use QUICKBOOKS_SOAPSERVER_BUILTIN when creating your QuickBooks_Server. The built-in SOAP server is pure PHP, and does not require the PHP SOAP extension. 
+
+p. Most of my queued up actions work fine, but some of them don't seem to go through! 
+s. This is probably an error with your qbXML syntax. The first thing that you should do is look at your quickbooks_log and quickbooks_queue tables and look for messages indicating what might have been the problem. The following things are problems that people commonly run into with qbXML syntax:
+	- A value you put in your qbXML request is the wrong data-type (passing a "bla" in an integer field), validate your qbXML request with the qbXML Test Validator included in the SDK
+	- A value you put in your qbXML request is too large for the field, look at the SDK for the field lengths (you could try that *alpha* QuickBooks_Utilities::castToField() method too...)
+	- You have another random error in your qbXML syntax, run the validator over it
+	- You have non-UTF8 or non-ASCII characters in your qbXML syntax, this can sometimes cause random errors
+	- There is another QuickBooks-related error, watch the quickbooks_log and quickbooks_queue tables for hints
+
+P. How can I see the raw SOAP requests/responses that my SOAP server is producing/handling?
+s. You can see the raw SOAP XML in two ways:
+	- Check your quickbooks_log table, it should log most outgoing/incoming XML messages
+	- You can call your server like this:   $contents = $server->handle(true);   and then write $contents to a file opened in mode "a+" (make sure the file is writable)
+
+p. I'm having problems with modify requests, I'm getting errors about edit sequences or modify sequences...
+s.  
+
+p. How can I see what the qbXML requests/responses that I'm sending/receiving look like?
+s. Look in the quickbooks_log SQL table, it will list all qbXML requests/responses that get passed through the framework. You might also consider setting the QuickBooks Web Connector to VERBOSE mode. You can do this by:
+	- Running regedit (Start > Run > regedit.exe)
+	- Navigating to: \HKEY_CURRENT_USER\Software\Intuit\QBWebConnector
+	- Change the 'Level' key to VERBOSE 
+
+p. I've upgraded from an older verison of your QuickBooks PHP Framework, and now nothing works!
+s. Look over the HISTORY.txt file to see if there any changes that might affect you. The parameters passed to request/response handlers have changed several times in the past. *MAKE SURE* that your request/response handlers are correct! Watch the log for errors. Watch the queue for error messages. Watch the Web Connector log for errors. E-mail me or catch me on AIM if you still can't figure it out.   
+
+p. I get errors that look something like this: "No registered functions for action..."
+s. Either the $map of request/response handlers you passed to the QuickBooks_Server() is incorrect, or you are not passing the requestID="..." attribute in your qbXML requests. 
+	- Check the quickbooks_log database table and look at the outgoing qbXML requests. Does each outgoing request have a requestID="..." attribute with a valid requestID? Remember that you should *always* embed the requestID="..." attribute in your qbXML requests.
+	- Are you sure that the functions you refer to in your $map parameter to the QuickBooks_Server() are correct? Are they valid, user-defined functions? Are they declared or included in your SOAP server file?
+
+p. I need to add two items, and one depends on the other (i.e.: A customer and his invoice). I queued them both up, the the dependent ran first, and blew up with an error about not being able to find the other record (because the other record hasn't been run yet)!
+s. You need to assign a priority to the items when you place them in the queue. Higher priority queued items get run first. So, if you're adding both a Customer and an Invoice for that Customer, queue up the Customer with a priority of 15, and the Invoice with a priority of 10. That way, the Customer gets added first, and then the Invoice gets added afterwards. 
+
+p. I think I found a bug! 
+s. First, make sure you're using the latest version of the package. If you still think you've found a bug, send me an e-mail with any related code and a short description of what the bug is. If I can reproduce it, I'll fix it. 
+
+p. I'm still having trouble, what can I do!?!
+s. Send me an e-mail, attach any related code, a dump of your database schema, and a short description of the problem. I'll try to help you as much as I can. If you're feeling really generous and want a really detailed response, consider offering me money. :-P
+
+--------------------------------------------------------------------------------
+
+ - Questions? E-mail me. 
+ - Comments? E-mail me.
+ - Feature requests? E-mail me. 
+ - Problems? E-mail me.
+ - Want to pay me to develop an integration solution? E-mail me!  
+
+Good luck with the integration! 
+
+ - Keith Palmer
+   keith@UglySlug.com
+   

@@ -1,0 +1,30 @@
+
+I just want to say thank you to the following individuals who have contributed 
+to the package either by:
+	1. Helping out in some big way (bug fixes, code contributions, suggestions, etc.)
+	2. Hiring me for consulting work (so that I actually get some return for the hundreds of my own hours I've spent producing this framework)
+	
+
+
+
+Special thanks go out to Mike Satkevich (mike AT-SIGN sysgbs DOT-SIGN com) for: 
+ - Lamenting about poor ODBC access to QuickBooks and thus inspiring the 
+ 	QuickBooks schema mirrored-in-an-SQL-database part of release 1.5.0. 
+ - Querying me about support for other scripting languages, and thus inspiring 
+ 	the language bridge support for other scripting languages like Python, ASP, 
+ 	etc. included in release 1.5.0.
+	
+Thanks to Ron Brogden (slave AT-SIGN codegrunt DOT-SIGN com) and CardBlanks.com for:
+ - Inspiring and partially funding the development of a Zen-Cart QuickBooks 
+ 	plugin that uses the framework, and also for the 'Associations/Idents' 
+ 	features in release 1.5.0.
+ 	
+Thanks to Stephane at HolyWorks Corp (holy.works01 AT-SIGN gmail DOT-SIGN com for:
+ - Helping to fund the PostgreSQL database server support that has been re-worked 
+	and added to release v1.5.0. 
+ 	
+Thanks also to everyone on the Intuit forums for providing feedback, bug 
+reports, feature requests, etc.! You guys have been a great help and have 
+really helped in keeping me moving forward on this project!
+
+ - Keith  

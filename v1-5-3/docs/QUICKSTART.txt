@@ -1,0 +1,97 @@
+
+I'm going to try to quickly describe here what you need to do to get QuickBooks 
+up and running and interacting correctly with the Web Connector and your web 
+application. 
+
+* MAKE SURE * you look at docs/example_server.php as it shows you the code to 
+do the vast majority of stuff you'll need to do to get started! 
+
+
+This assumes your doing an integration using the basic features of this 
+framework. You'll need to look at these files for examples:
+
+ docs/example_server.php
+ This is the main example file that shows how to set up a SOAP Web Service that 
+ QuickBooks will talk to and allow exchange of data with.
+
+ docs/example_integration.php
+ The SOAP Web Service will work off of a queueing mechanism. You'll queue up 
+ events within your application, then when QuickBooks and the Web Connector 
+ connect you'll build qbXML requests from those actions and send them to 
+ QuickBooks. This file shows you how to queue up events/actions. 
+
+ docs/example_qwc.php
+ This file shows you how to programatically create a .QWC file, the file that 
+ tells the Web Connector how to connect to your SOAP server. 
+
+
+You might also find helpful data at my wiki: 
+ http://wiki.consolibyte.com/wiki/
+
+--------------------------------------------------------------------------------
+
+1. Install QuickBooks (if you havn't already) and get a company ready to test with
+2. Install the QuickBooks Web Connector
+3. Install the QuickBooks SDK (some parts of it only work on Windows, the documentation is HTML and will work on Apple and Linux)
+
+4. Know your MySQL connection string, you'll use it later, it should look like this: 
+ "mysql://YOUR_MYSQL_USERNAME:YOUR_MYSQL_PASSWORD@YOUR_MYSQL_HOSTNAME/YOUR_MYSQL_DATABASE"
+
+5. Create a .QWC file by...   
+	* Using the example on my wiki: http://wiki.consolibyte.com/wiki/doku.php/quickbooks_web_connector#example_.qwc_file
+ 		
+	 _OR_
+
+	* Programatically create one: 	(see: docs/example_qwc.php)
+		a) QuickBooks_Utilities class is located in QuickBooks/Utilities.php
+		b) Look at the method documentation for parameter documentation, the username is the username that the QB Web Connector will use to authenticate
+		c) Unless you're running the Web Connector on the same machine as the SOAP server, you *MUST* use a https:// SSL connection 
+		d) Generate and save the output of the function (an XML document) as YOUR_APPLICATION_NAME.QWC
+
+6. Load the .QWC file into the QuickBooks Web Connector
+
+7. Use the QuickBooks_Utilities class and ::initialize() method to create the MySQL tables you need	(docs/example_server.php does this automatically)
+
+8. Add a user for the QuickBooks Web Connector to connect as:		(docs/example_server.php does this automatically)
+	a) The username should be the same as the username you used when generating the .QWC file
+	b) The password should be hard to guess
+	c) The username and password will be stored encrypted in the quickbooks_user table in MySQL
+	d) Use the QuickBooks_Utilities::createUser() method to store the username/password in MySQL (if you just do an INSERT through the mysql console or phpMyAdmin, it *WILL NOT WORK* so make sure you use this static method!!!)
+	
+9. Create your QuickBooks server (modify the included docs/example_server.php file)
+
+10. Test the QuickBooks connection by telling the QuickBooks Web Connector to update (it should tell you there is nothing to do, if it gives an error, look at the error log for details)
+
+11. Test the QuickBooks connection more by doing a test query		(docs/example_server.php shows an example of doing this to add customers)
+	a) Write a test request function and add it to your server map (you could just slightly modify the example request function in the example_server.php file if you wanted)
+	b) Add a record to the quickbooks_queue class that will trigger your request function
+	c) Run the Web Connector
+	d) Check QuickBooks to see if the record went through
+
+12. Write the rest of your functions and have fun with integration! 
+
+
+NOTES:
+	- Make sure you watch the quickbooks_log table, it's useful for debugging
+	- Make sure you watch the log file for the QuickBooks Web Connector
+	- The QUICKBOOKS QBXML DOCUMENTATION HAS ERRORS IN IT! Double check your qbXML request string carefully if you have weird errors cropping up
+	- Set the log level of your QuickBooks server's driver to QUICKBOOKS_LOG_DEBUG, it will make the quickbooks_log table more useful
+	- *** YOU MUST USE THE QuickBooks_Utilities::createUser() METHOD TO ADD USERS TO THE quickbooks_queue TABLE!!! ***
+
+--------------------------------------------------------------------------------
+
+The code included is in somewhat beta form, and has only been tested on a very 
+limited basis, and only been tested with the features/functionality that I 
+needed when writing the code. If something explodes, it's not my fault. That 
+said, if you e-mail me I'd be glad to try to help as much as I can. 
+
+ - Questions? E-mail me. 
+ - Comments? E-mail me.
+ - Feature requests? E-mail me. 
+ - Problems? E-mail me. 
+
+Good luck with the integration! 
+
+ - Keith Palmer
+   keith@UglySlug.com
+   

@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<QBXML>
+<QBXMLMsgsRs>
+<BillQueryRs requestID="QmlsbFF1ZXJ5fC91c3IvaG9tZS9rcGFsbWVyL3B1YmxpY19odG1sL1F1aWNrQm9va3M=" statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+<BillRet>
+<TxnID>16-1211516307</TxnID>
+<TimeCreated>2008-05-23T00:18:27-05:00</TimeCreated>
+<TimeModified>2008-05-23T00:18:27-05:00</TimeModified>
+<EditSequence>1211516307</EditSequence>
+<TxnNumber>6</TxnNumber>
+<VendorRef>
+<ListID>20000-1211516307</ListID>
+<FullName>test vendor</FullName>
+</VendorRef>
+<APAccountRef>
+<ListID>3F0000-1211516307</ListID>
+<FullName>Accounts Payable</FullName>
+</APAccountRef>
+<TxnDate>2008-05-23</TxnDate>
+<DueDate>2008-06-02</DueDate>
+<AmountDue>100.00</AmountDue>
+<Memo>Opening balance</Memo>
+<IsPaid>false</IsPaid>
+<ExpenseLineRet>
+<TxnLineID>18-1211516307</TxnLineID>
+<AccountRef>
+<ListID>400000-1211516307</ListID>
+<FullName>Uncategorized Expenses</FullName>
+</AccountRef>
+<Amount>100.00</Amount>
+<Memo>Opening balance</Memo>
+</ExpenseLineRet>
+</BillRet>
+<BillRet>
+<TxnID>1F-1211516372</TxnID>
+<TimeCreated>2008-05-23T00:19:32-05:00</TimeCreated>
+<TimeModified>2008-05-23T00:19:32-05:00</TimeModified>
+<EditSequence>1211516372</EditSequence>
+<TxnNumber>9</TxnNumber>
+<VendorRef>
+<ListID>20000-1211516307</ListID>
+<FullName>test vendor</FullName>
+</VendorRef>
+<APAccountRef>
+<ListID>3F0000-1211516307</ListID>
+<FullName>Accounts Payable</FullName>
+</APAccountRef>
+<TxnDate>2008-05-23</TxnDate>
+<DueDate>2008-06-22</DueDate>
+<AmountDue>150.00</AmountDue>
+<TermsRef>
+<ListID>20000-1211066025</ListID>
+<FullName>Net 30</FullName>
+</TermsRef>
+<Memo>test bill</Memo>
+<IsPaid>false</IsPaid>
+<ExpenseLineRet>
+<TxnLineID>21-1211516372</TxnLineID>
+<AccountRef>
+<ListID>80000-1211066026</ListID>
+<FullName>Amortization Expense</FullName>
+</AccountRef>
+<Amount>150.00</Amount>
+<Memo>test memo</Memo>
+<CustomerRef>
+<ListID>10006-1211236622</ListID>
+<FullName>1 - Keith Palmer</FullName>
+</CustomerRef>
+<BillableStatus>Billable</BillableStatus>
+</ExpenseLineRet>
+</BillRet>
+</BillQueryRs>
+</QBXMLMsgsRs>
+</QBXML>

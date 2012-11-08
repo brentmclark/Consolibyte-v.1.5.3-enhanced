@@ -1,0 +1,318 @@
+<?php
+
+/**
+ * 
+ * 
+ * @author Keith Palmer <keith@consolibyte.com>
+ * @license LICENSE.txt
+ * 
+ * @package QuickBooks
+ * @subpackage Integrator
+ */
+
+/** 
+ * 
+ */
+require_once 'QuickBooks.php';
+
+/** 
+ * 
+ */
+require_once 'QuickBooks/Integrator.php';
+
+/**
+ * 
+ */
+class QuickBooks_Integrator_Zencart extends QuickBooks_Integrator
+{
+	/**
+	 * 
+	 * 
+	 * @param integer $ID
+	 * @return QuickBooks_Object_Customer
+	 */
+	public function getCustomer($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT
+				user_info_id AS CustomerID, 
+				company AS CompanyName, 
+				first_name AS FirstName, 
+				middle_name AS MiddleName, 
+				last_name AS LastName, 
+			
+				CASE
+					WHEN LENGTH(bill_address_1) THEN bill_address_1
+					ELSE address_1 END AS BillAddress_Addr1,
+			
+				CASE
+					WHEN LENGTH(bill_city) THEN bill_city
+					ELSE city END AS BillAddress_City,
+			
+				CASE
+					WHEN LENGTH(bill_state) THEN bill_state
+					ELSE state END AS BillAddress_State,
+			
+				CASE
+					WHEN LENGTH(bill_zip) THEN bill_zip
+					ELSE zip END AS BillAddress_PostalCode, 
+				
+				address_1 AS ShipAddress_Addr1, 
+				address_2 AS ShipAddress_Addr2, 
+				city AS ShipAddress_City, 
+				state AS ShipAddress_State, 
+				zip as ShipAddress_PostalCode, 
+				
+				phone_1 AS Phone, 
+				phone_2 AS AltPhone, 
+				user_email AS Email, 
+				
+				CONCAT(first_name, ' ', last_name) AS Contact
+				
+			FROM
+				user_info
+			WHERE
+				user_info_id = " . $ID, $errnum, $errmsg);
+			
+		$arr = $this->_integrator->fetch($res);
+		
+		return $this->_customerFromArray($arr);
+	}
+	
+	public function listNewCustomersSince($datetime)
+	{
+		return array();
+	}
+	
+	public function listModifiedCustomersSince($datetime)
+	{
+		return array();
+	}
+	
+	public function listNewOrdersSince($datetime)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT 
+				order_id
+			FROM 
+				orders
+			WHERE 
+				order_status =  'C' AND 
+				FROM_UNIXTIME(cdate) >= '" . $datetime . "' ", $errnum, $errmsg);
+		
+		while ($arr = $this->_integrator->fetch($res))
+		{
+			$list[] = $arr['order_id'];
+		}
+		
+		return $list;
+	}
+	
+	public function listModifiedOrdersSince($datetime)
+	{
+		return array();
+	}
+	
+	public function getOrder($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT
+				order_id AS OrderID,
+				orders.user_info_id AS CustomerID,
+				NULL AS ClassID,
+				NULL AS ARAccountID,
+				NULL AS TemplateID,
+				DATE(FROM_UNIXTIME(orders.cdate)) AS TxnDate,
+			
+				CASE
+					WHEN LENGTH(ReferenceNum) THEN ReferenceNum
+					ELSE order_id END AS RefNumber,
+			
+				CASE
+					WHEN LENGTH(bill_address_1) THEN bill_address_1
+					ELSE address_1 END AS BillAddress_Addr1,
+			
+				CASE
+					WHEN LENGTH(bill_city) THEN bill_city
+					ELSE city END AS BillAddress_City,
+			
+				CASE
+					WHEN LENGTH(bill_state) THEN bill_state
+					ELSE state END AS BillAddress_State,
+			
+				CASE
+					WHEN LENGTH(bill_zip) THEN bill_zip
+					ELSE zip END AS BillAddress_PostalCode, 
+				
+				address_1 AS ShipAddress_Addr1, 
+				address_2 AS ShipAddress_Addr2, 
+				city AS ShipAddress_City, 
+				state AS ShipAddress_State, 
+				zip AS ShipAddress_PostalCode, 
+				
+				ship_method_id AS ShipMethodID, 
+				notes AS Memo
+				
+			FROM
+				orders
+			LEFT JOIN
+				user_info ON user_info.user_info_id = orders.user_info_id
+			
+			WHERE
+				order_id = " . $ID, $errnum, $errmsg);
+		
+		$arr = $this->_integrator->fetch($res);
+		
+		$items = $this->getOrderItems($ID);
+		
+		return $this->_orderFromArray($arr, $items);
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param integer $ID
+	 * @return array 
+	 */
+	public function getOrderItems($ID)
+	{
+		$list = array();
+		
+		$res = $this->_integrator->query("
+			SELECT
+				order_item.product_id AS ProductID, 
+				order_item.product_quantity AS Quantity, 
+				order_item.product_item_price AS Rate
+			FROM
+				order_item
+			LEFT JOIN
+				product ON order_item.product_id = product.product_id
+			LEFT JOIN
+				product_price ON product_price.product_id = product.product_id
+			WHERE
+				product_currency = '" . $this->_config['currency_string'] . "' AND 
+				order_item.order_id = " . $ID, $errnum, $errmsg);
+		
+		while ($arr = $this->_integrator->fetch($res))
+		{
+			$item = $this->_orderItemFromArray($arr);
+			
+			if ($item)
+			{
+				$list[] = $item;
+			}
+		}
+		
+		return $list;
+	}
+	
+	public function getShipMethod($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT
+				ship_method_id AS ShipMethodID, 
+				CONCAT(ship_carrier_name, ' - ', ship_method_name) AS Name
+			FROM
+				shipping
+			WHERE
+				ship_method_id = " . $ID, $errnum, $errmsg);
+		
+		$arr = $this->_integrator->fetch($res);
+		
+		return $this->_shipMethodFromArray($arr);
+	}
+	
+	public function getPayment($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT
+				user_info_id AS CustomerID, 
+				NULL AS ARAccountID, 
+				NULL AS ARAccountName, 
+				
+				CASE
+					WHEN ReferenceNum THEN ReferenceNum
+					ELSE order_id END AS RefNumber,
+					
+				DATE(FROM_UNIXTIME(orders.cdate)) AS TxnDate, 
+				(order_subtotal + order_shipping - coupon_discount) AS TotalAmount, 
+				NULL AS PaymentMethodID, 
+				CONCAT(auth_transaction_number, ', XXXX-XXXX-XXXX-', SUBSTR(card_no, 12, 4)) AS Memo, 
+				'true' AS IsAutoApply
+			FROM
+				orders
+			WHERE
+				order_id = " . $ID, $errnum, $errmsg);
+		
+		$arr = $this->_integrator->fetch($res);
+		
+		$orders = array();
+		
+		return $this->_paymentFromArray($arr, $orders);
+	}
+	
+	public function getDiscount($ID)
+	{
+		
+	}
+	
+	public function getSalesTax($ID)
+	{
+		
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param integer $ID
+	 * @return QuickBooks_Object_*
+	 */
+	public function getProduct($ID)
+	{
+		$errnum = 0;
+		$errmsg = '';
+		
+		$res = $this->_integrator->query("
+			SELECT
+				product.product_id AS ItemID, 
+				product_name_1 AS Name, 
+				product_s_desc_1 AS SalesOrPurchase_Desc, 
+				product_s_desc_1 AS SalesAndPurchase_SalesDesc, 
+				
+				-- these are for ItemService 
+				product_price AS SalesOrPurchase_Price, 
+				product_price AS SalesAndPurchase_SalesPrice, 
+				-- product_price AS SalesAndPurchase_PurchaseCost, 
+			
+				'" . $this->_config['sales_account_name'] . "' AS SalesOrPurchase_AccountID 
+				
+			FROM
+				product
+			LEFT JOIN
+				product_price ON product_price.product_id = product.product_id
+			WHERE
+				product_currency = '" . $this->_config['currency_string'] . "' AND 
+				product.product_id = " . $ID, $errnum, $errmsg);
+				
+		$arr = $this->_integrator->fetch($res);
+		
+		return $this->_productFromArray($arr);
+	}
+}
+
+?>

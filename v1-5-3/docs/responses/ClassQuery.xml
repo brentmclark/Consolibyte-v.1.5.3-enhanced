@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<QBXML>
+<QBXMLMsgsRs>
+<ClassQueryRs requestID="Q2xhc3NRdWVyeXwvdXNyL2hvbWUva3BhbG1lci9wdWJsaWNfaHRtbC9RdWlja0Jvb2tz" statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+
+<ClassRet>
+<ListID>10000-1221083947</ListID>
+<TimeCreated>2008-09-10T17:59:07-05:00</TimeCreated>
+<TimeModified>2008-09-10T17:59:07-05:00</TimeModified>
+<EditSequence>1221083947</EditSequence>
+<Name>C - Communications UPDATED</Name>
+<FullName>C - Communications UPDATED</FullName>
+<IsActive>true</IsActive>
+<Sublevel>0</Sublevel>
+</ClassRet>
+
+<ClassRet>
+<ListID>20000-1221083976</ListID>
+<TimeCreated>2008-09-10T17:59:36-05:00</TimeCreated>
+<TimeModified>2008-09-10T17:59:36-05:00</TimeModified>
+<EditSequence>1221083976</EditSequence>
+<Name>SMT Satelite Mdeia Tours</Name>
+<FullName>C - Communications:SMT Satelite Mdeia Tours</FullName>
+<IsActive>true</IsActive>
+<ParentRef>
+<ListID>10000-1221083947</ListID>
+<FullName>C - Communications</FullName>
+</ParentRef>
+<Sublevel>1</Sublevel>
+</ClassRet>
+
+</ClassQueryRs>
+</QBXMLMsgsRs>
+</QBXML>

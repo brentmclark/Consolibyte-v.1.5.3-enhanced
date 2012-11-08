@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * 
+ * 
+ * @author Keith Palmer <keith@consolibyte.com>
+ * @license LICENSE.txt
+ * 
+ * @package QuickBooks
+ * @subpackage Server
+ */
+
+/**
+ * 
+ */
+require_once 'QuickBooks.php';
+
+/**
+ * 
+ */
+require_once 'QuickBooks/Server/Integrator.php';
+
+/**
+ * 
+ */
+require_once 'QuickBooks/Integrator.php';
+
+/**
+ * 
+ */
+require_once 'QuickBooks/Integrator/Imscart.php';
+
+/**
+ * 
+ */
+class QuickBooks_Server_Integrator_Imscart extends QuickBooks_Server_Integrator
+{
+	/**
+	 * Get the IMSCart integrator object for the IMSCart integrator server
+	 * 
+	 * @param string $integrator_dsn_or_conn
+	 * @param array $integrator_options
+	 * @return QuickBooks_Integrator
+	 */
+	protected function _integratorFactory($integrator_dsn_or_conn, $integrator_options)
+	{
+		$driver = QuickBooks_Utilities::driverFactory($integrator_dsn_or_conn);
+		return new QuickBooks_Integrator_Imscart($driver, $integrator_options);
+	}
+}
+
+?>

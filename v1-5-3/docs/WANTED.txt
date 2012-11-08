@@ -1,0 +1,15 @@
+
+--------------------------------------------------------------------------------
+
+I am looking for several things to aid me in developing this package, if you 
+can help out with any of these things, please get in touch with me!
+ 
+  - Keith Palmer
+    keith@UglySlug.com
+
+--------------------------------------------------------------------------------
+
+
+WANTED:
+	- Access to an Oracle SQL server to develop an Oracle driver backend
+	
